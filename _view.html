@@ -1,0 +1,1920 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PEDROO | متجر الحواسيب والعتاد التقني في الجزائر</title>
+<meta name="description" content="PEDROO — متجرك الاحترافي لحواسيب الألعاب، كروت الشاشة، المعالجات والملحقات في الجزائر. توصيل إلى 58 ولاية، دفع عند الاستلام وضمان رسمي.">
+<meta name="theme-color" content="#04060c">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%232de2ff'/%3E%3Cstop offset='1' stop-color='%239b6bff'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='48' height='48' rx='13' fill='url(%23g)'/%3E%3Cpath d='M17 12h9.2c4.3 0 7.3 2.8 7.3 6.9 0 4.2-3 7-7.3 7H22v10h-5V12Zm5 4.4v5.2h3.9c1.7 0 2.7-1 2.7-2.6 0-1.6-1-2.6-2.7-2.6H22Z' fill='%2305070e'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&family=Tajawal:wght@300;400;500;700;800;900&display=swap" rel="stylesheet">
+<style>
+/* ============ BASE ============ */
+:root{
+  --bg:#04060c;
+  --bg-2:#080d18;
+  --surface:rgba(255,255,255,.035);
+  --stroke:rgba(255,255,255,.085);
+  --text:#eaf1ff;
+  --muted:#8e9bb3;
+  --cyan:#2de2ff;
+  --blue:#4f7cff;
+  --violet:#9b6bff;
+  --gold:#ffc453;
+  --green:#34e3a4;
+  --grad:linear-gradient(120deg,#2de2ff 0%,#4f7cff 52%,#9b6bff 100%);
+  --radius:20px;
+  --container:1200px;
+  --font-ar:"Tajawal","Segoe UI",Tahoma,sans-serif;
+  --font-en:"Sora","Tajawal",sans-serif;
+  --shadow:0 24px 60px rgba(0,0,0,.45);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:92px;overflow-x:hidden}
+body{
+  margin:0;background:var(--bg);color:var(--text);
+  font-family:var(--font-ar);line-height:1.7;
+  -webkit-font-smoothing:antialiased;overflow-x:hidden;
+}
+body.locked{overflow:hidden}
+img{max-width:100%;display:block}
+a{color:inherit;text-decoration:none}
+button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
+input,select,textarea{font:inherit}
+h1,h2,h3,h4{line-height:1.25;margin:0}
+p{margin:0}
+::selection{background:rgba(45,226,255,.28);color:#fff}
+::-webkit-scrollbar{width:9px;height:9px}
+::-webkit-scrollbar-track{background:#05080f}
+::-webkit-scrollbar-thumb{background:#1b2940;border-radius:99px}
+::-webkit-scrollbar-thumb:hover{background:#2a3e5f}
+.container{width:min(var(--container),calc(100% - 40px));margin-inline:auto}
+.ic{width:1.15em;height:1.15em;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;flex:none}
+.ic-star{fill:currentColor;stroke:none}
+.grad-text{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+.free{color:var(--green);font-weight:700}
+/* ============ BACKGROUND FX ============ */
+.bg-fx{position:fixed;inset:0;z-index:-2;overflow:hidden;pointer-events:none;background:
+  radial-gradient(ellipse 90% 55% at 50% -10%,rgba(35,90,220,.16),transparent 65%),
+  radial-gradient(ellipse 60% 50% at 100% 20%,rgba(155,107,255,.08),transparent 70%)}
+.bg-grid{position:absolute;inset:0;opacity:.5;background-image:
+  linear-gradient(rgba(255,255,255,.032) 1px,transparent 1px),
+  linear-gradient(90deg,rgba(255,255,255,.032) 1px,transparent 1px);
+  background-size:72px 72px;
+  -webkit-mask-image:radial-gradient(ellipse 75% 55% at 50% 0%,#000 20%,transparent 78%);
+  mask-image:radial-gradient(ellipse 75% 55% at 50% 0%,#000 20%,transparent 78%)}
+.orb{position:absolute;border-radius:50%;filter:blur(100px);opacity:.3}
+.orb-1{width:560px;height:560px;background:#0d47ff;top:-190px;right:-100px;animation:drift 18s ease-in-out infinite}
+.orb-2{width:460px;height:460px;background:#00d5ff;top:34%;left:-190px;opacity:.13;animation:drift 22s ease-in-out infinite reverse}
+.orb-3{width:520px;height:520px;background:#7c3aed;bottom:-12%;right:28%;opacity:.12}
+@keyframes drift{50%{transform:translate3d(-40px,40px,0) scale(1.08)}}
+/* ============ TOPBAR ============ */
+.topbar{
+  position:relative;z-index:90;border-bottom:1px solid var(--stroke);
+  background:linear-gradient(90deg,rgba(45,226,255,.1),rgba(79,124,255,.06) 45%,rgba(155,107,255,.1));
+  font-size:.78rem;color:#b9c6de;
+}
+.topbar-inner{display:flex;align-items:center;justify-content:center;gap:28px;min-height:38px;flex-wrap:wrap;padding:5px 0}
+.topbar-item{display:flex;align-items:center;gap:7px;white-space:nowrap}
+.topbar .ic{width:14px;height:14px;color:var(--cyan)}
+/* ============ HEADER ============ */
+.site-header{position:sticky;top:0;z-index:80;border-bottom:1px solid transparent;transition:background .3s,border-color .3s,box-shadow .3s}
+.site-header.scrolled{background:rgba(4,6,12,.84);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);border-color:var(--stroke);box-shadow:0 14px 40px rgba(0,0,0,.35)}
+.header-inner{display:flex;align-items:center;gap:26px;min-height:78px}
+.logo{display:flex;align-items:center;gap:12px;flex:none}
+.logo-mark{width:42px;height:42px;border-radius:13px;background:var(--grad);display:grid;place-items:center;box-shadow:0 8px 28px rgba(45,180,255,.3);transition:transform .3s}
+.logo:hover .logo-mark{transform:rotate(-6deg) scale(1.04)}
+.logo-mark svg{width:30px;height:30px}
+.logo-text{font-family:var(--font-en);font-weight:800;font-size:1.28rem;letter-spacing:.2em;line-height:1;display:block}
+.logo-sub{display:block;font-family:var(--font-ar);font-size:.58rem;letter-spacing:.14em;color:var(--muted);margin-top:5px;font-weight:500}
+.nav{display:flex;align-items:center;gap:25px;margin-inline-start:auto}
+.nav a{font-size:.9rem;font-weight:500;color:#c0cce0;position:relative;padding:6px 0;transition:color .2s}
+.nav a::after{content:"";position:absolute;bottom:0;inset-inline:0;height:2px;border-radius:2px;background:var(--grad);transform:scaleX(0);transform-origin:right;transition:transform .3s}
+.nav a:hover,.nav a.active{color:#fff}
+.nav a:hover::after,.nav a.active::after{transform:scaleX(1)}
+.header-actions{display:flex;align-items:center;gap:10px;margin-inline-start:auto;flex:none}
+.icon-btn{width:42px;height:42px;border-radius:12px;border:1px solid var(--stroke);background:rgba(255,255,255,.03);display:grid;place-items:center;position:relative;transition:.22s}
+.icon-btn:hover{border-color:rgba(45,226,255,.4);background:rgba(45,226,255,.08);transform:translateY(-2px)}
+.icon-btn .ic{width:19px;height:19px}
+.cart-count{position:absolute;top:-6px;left:-6px;min-width:19px;height:19px;border-radius:99px;background:var(--grad);color:#fff;font-family:var(--font-en);font-size:.62rem;font-weight:700;display:grid;place-items:center;padding:0 5px;box-shadow:0 4px 12px rgba(45,180,255,.4)}
+.menu-btn{display:none}
+/* ============ BUTTONS ============ */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;padding:14px 24px;border-radius:12px;font-weight:700;font-size:.92rem;transition:transform .25s,box-shadow .25s,background .25s,border-color .25s;white-space:nowrap;border:1px solid transparent;position:relative;overflow:hidden}
+.btn .ic{width:17px;height:17px}
+.btn:hover{transform:translateY(-2px)}
+.btn-primary{background:var(--grad);color:#fff;box-shadow:0 12px 34px rgba(45,150,255,.22)}
+.btn-primary::after{content:"";position:absolute;inset:0;background:linear-gradient(100deg,transparent 20%,rgba(255,255,255,.35),transparent 80%);transform:translateX(-130%);transition:transform .65s}
+.btn-primary:hover::after{transform:translateX(130%)}
+.btn-primary:hover{box-shadow:0 16px 42px rgba(45,180,255,.35)}
+.btn-ghost{background:rgba(255,255,255,.04);border-color:rgba(255,255,255,.13);color:#e6eefb;backdrop-filter:blur(8px)}
+.btn-ghost:hover{border-color:rgba(45,226,255,.35);background:rgba(45,226,255,.06)}
+.btn-sm{padding:10px 18px;font-size:.82rem;border-radius:10px}
+.btn-block{width:100%}
+.btn:disabled{opacity:.55;cursor:not-allowed;transform:none}
+/* ============ HERO ============ */
+.hero{padding:clamp(46px,6vw,84px) 0 clamp(48px,6vw,86px);position:relative;overflow-x:clip}
+.hero-grid{display:grid;grid-template-columns:1.06fr .94fr;gap:clamp(30px,5vw,70px);align-items:center}
+.eyebrow{display:inline-flex;align-items:center;gap:9px;padding:7px 14px;border-radius:999px;border:1px solid rgba(45,226,255,.24);background:rgba(45,226,255,.07);color:#a5f1ff;font-size:.76rem;font-weight:700;letter-spacing:.02em}
+.eyebrow .dot{width:7px;height:7px;border-radius:50%;background:var(--cyan);box-shadow:0 0 0 0 rgba(45,226,255,.55);animation:pulse 2.2s infinite}
+@keyframes pulse{70%{box-shadow:0 0 0 8px rgba(45,226,255,0)}100%{box-shadow:0 0 0 0 rgba(45,226,255,0)}}
+.hero h1{font-size:clamp(2.45rem,5.1vw,4.35rem);line-height:1.15;margin:20px 0 18px;font-weight:800;letter-spacing:-.015em}
+.hero-copy>p{color:var(--muted);font-size:clamp(.98rem,1.15vw,1.08rem);max-width:57ch;margin-bottom:30px}
+.hero-cta{display:flex;gap:13px;flex-wrap:wrap;margin-bottom:36px}
+.hero-stats{display:grid;grid-template-columns:repeat(4,auto);justify-content:start;gap:0;padding-top:24px;border-top:1px solid var(--stroke)}
+.stat{padding-inline-end:24px;margin-inline-end:24px;border-inline-end:1px solid var(--stroke)}
+.stat:last-child{padding-inline-end:0;margin-inline-end:0;border-inline-end:0}
+.stat b{font-family:var(--font-en);font-size:1.3rem;display:block;color:#fff;line-height:1.3}
+.stat span{font-size:.73rem;color:var(--muted);white-space:nowrap}
+/* hero visual */
+.hero-visual{position:relative;display:flex;justify-content:center;perspective:1200px}
+.hero-visual::before{content:"";position:absolute;width:78%;aspect-ratio:1;border-radius:50%;background:radial-gradient(circle,rgba(45,226,255,.24),rgba(79,124,255,.1) 45%,transparent 68%);filter:blur(28px);top:8%}
+.hero-ring{position:absolute;width:108%;aspect-ratio:1;border:1px dashed rgba(45,226,255,.18);border-radius:50%;top:50%;left:50%;transform:translate(-50%,-50%);animation:spin 46s linear infinite;pointer-events:none}
+@keyframes spin{to{transform:translate(-50%,-50%) rotate(360deg)}}
+.hero-card{position:relative;width:min(100%,455px);border-radius:30px;padding:9px;background:linear-gradient(160deg,rgba(255,255,255,.15),rgba(255,255,255,.02) 45%,rgba(45,226,255,.1));border:1px solid rgba(255,255,255,.13);box-shadow:0 44px 90px rgba(0,0,0,.6),inset 0 1px rgba(255,255,255,.12);will-change:transform;transition:transform .2s ease-out}
+.hero-media{position:relative;border-radius:22px;overflow:hidden;background:#0a1220}
+.hero-media img{width:100%;height:clamp(420px,43vw,530px);object-fit:cover;object-position:center}
+.hero-media::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 45%,rgba(4,6,12,.85));pointer-events:none}
+.hero-tag{position:absolute;bottom:18px;inset-inline:20px;z-index:2;display:flex;align-items:flex-end;justify-content:space-between;gap:14px}
+.hero-tag span{font-family:var(--font-en);font-size:.62rem;letter-spacing:.3em;color:#8ceaff;font-weight:600}
+.hero-tag b{font-family:var(--font-en);font-size:1.35rem;letter-spacing:.06em;display:block;line-height:1.2}
+.hero-tag small{display:block;color:#a9b8cf;font-size:.7rem;text-align:end}
+.hero-tag .price{font-family:var(--font-en);font-weight:700;font-size:.9rem;color:#fff;white-space:nowrap}
+.float-chip{position:absolute;z-index:3;display:flex;align-items:center;gap:10px;padding:10px 14px;border-radius:14px;background:rgba(8,13,24,.8);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border:1px solid rgba(255,255,255,.13);box-shadow:0 20px 42px rgba(0,0,0,.45);animation:float 5.5s ease-in-out infinite}
+.float-chip .chip-ic{width:34px;height:34px;border-radius:10px;background:linear-gradient(135deg,rgba(45,226,255,.22),rgba(155,107,255,.2));border:1px solid rgba(45,226,255,.25);display:grid;place-items:center;color:var(--cyan);flex:none}
+.float-chip .chip-ic .ic{width:16px;height:16px}
+.float-chip b{font-family:var(--font-en);font-size:.78rem;display:block;line-height:1.35;letter-spacing:.02em}
+.float-chip small{display:block;font-size:.64rem;color:var(--muted);line-height:1.4}
+.chip-1{top:15%;inset-inline-start:-28px}
+.chip-2{bottom:25%;inset-inline-end:-24px;animation-delay:-2.7s}
+.chip-3{bottom:-14px;inset-inline-start:13%;animation-delay:-1.4s}
+@keyframes float{50%{transform:translateY(-9px)}}
+/* ============ MARQUEE ============ */
+.brands{padding:22px 0;border-block:1px solid var(--stroke);background:rgba(255,255,255,.014);overflow:hidden;position:relative}
+.brands::before,.brands::after{content:"";position:absolute;top:0;bottom:0;width:120px;z-index:2;pointer-events:none}
+.brands::before{right:0;background:linear-gradient(-90deg,var(--bg),transparent)}
+.brands::after{left:0;background:linear-gradient(90deg,var(--bg),transparent)}
+.brands-track{display:flex;width:max-content;direction:ltr;animation:marquee 34s linear infinite}
+.brand-group{display:flex;align-items:center;gap:54px;padding-inline-end:54px}
+.brand-group span{font-family:var(--font-en);font-weight:700;font-size:1rem;letter-spacing:.14em;color:#5c6a82;white-space:nowrap;transition:color .25s}
+.brand-group span:hover{color:#c7d5ec}
+.brands:hover .brands-track{animation-play-state:paused}
+@keyframes marquee{to{transform:translateX(-50%)}}
+/* ============ SECTIONS ============ */
+.section{padding:clamp(62px,7.5vw,98px) 0;position:relative}
+.section-head{max-width:660px;margin-bottom:36px}
+.section-head.center{margin-inline:auto;text-align:center}
+.sec-eyebrow{display:flex;align-items:center;gap:9px;color:var(--cyan);font-size:.72rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;margin-bottom:13px}
+.sec-eyebrow::before{content:"";width:28px;height:1px;background:linear-gradient(90deg,var(--cyan),transparent)}
+.center .sec-eyebrow{justify-content:center}
+.center .sec-eyebrow::before{display:none}
+.section-head h2{font-size:clamp(1.75rem,3.3vw,2.65rem);font-weight:800;letter-spacing:-.01em;margin-bottom:12px}
+.section-head p{color:var(--muted);font-size:.95rem;max-width:58ch}
+.center .section-head p{margin-inline:auto}
+.head-row{display:flex;align-items:flex-end;justify-content:space-between;gap:24px;margin-bottom:34px;flex-wrap:wrap}
+.head-row .section-head{margin-bottom:0}
+/* ============ PRODUCTS ============ */
+.toolbar{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:26px;flex-wrap:wrap}
+.filters{display:flex;gap:8px;flex-wrap:wrap}
+.filter-btn{padding:9px 17px;border-radius:999px;border:1px solid var(--stroke);font-size:.81rem;font-weight:600;color:#a9b7cd;background:rgba(255,255,255,.02);transition:.22s}
+.filter-btn:hover{color:#fff;border-color:rgba(45,226,255,.3);background:rgba(45,226,255,.05)}
+.filter-btn.active{background:var(--grad);color:#fff;border-color:transparent;box-shadow:0 8px 24px rgba(45,150,255,.22)}
+.search-box{position:relative;min-width:250px;flex:0 1 auto}
+.search-box .ic{position:absolute;inset-inline-start:13px;top:50%;transform:translateY(-50%);color:#7d8aa1;width:16px;height:16px}
+.search-box input{width:100%;padding:11px 16px;padding-inline-start:38px;border-radius:999px;border:1px solid var(--stroke);background:rgba(255,255,255,.03);color:#fff;font-size:.84rem;outline:none;transition:.2s}
+.search-box input::placeholder{color:#66748b}
+.search-box input:focus{border-color:rgba(45,226,255,.5);box-shadow:0 0 0 3px rgba(45,226,255,.08);background:rgba(45,226,255,.03)}
+.products-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+.product-card{position:relative;border-radius:18px;border:1px solid var(--stroke);background:linear-gradient(180deg,rgba(255,255,255,.045),rgba(255,255,255,.012));overflow:hidden;display:flex;flex-direction:column;transition:transform .3s,border-color .3s,box-shadow .3s;animation:cardIn .5s both}
+@keyframes cardIn{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+.product-card:hover{transform:translateY(-6px);border-color:rgba(45,226,255,.32);box-shadow:0 26px 55px rgba(0,0,0,.48),0 0 0 1px rgba(45,226,255,.06)}
+.p-media{position:relative;aspect-ratio:1.22;overflow:hidden;background:radial-gradient(circle at 50% 40%,#131e31,#080d16)}
+.p-media img{width:100%;height:100%;object-fit:cover;transition:transform .7s cubic-bezier(.2,.7,.2,1)}
+.product-card:hover .p-media img{transform:scale(1.07)}
+.p-media::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 52%,rgba(4,6,12,.62));pointer-events:none}
+.p-badge{position:absolute;top:11px;inset-inline-start:11px;z-index:2;font-size:.63rem;font-weight:700;padding:4px 9px;border-radius:6px;background:rgba(5,10,20,.72);border:1px solid rgba(45,226,255,.38);color:#a9f4ff;backdrop-filter:blur(8px);letter-spacing:.02em}
+.p-badge.sale{color:#ffb4c8;border-color:rgba(255,107,129,.42)}
+.p-badge.new{color:#9affc8;border-color:rgba(52,211,153,.42)}
+.p-badge.gold{color:#ffd98a;border-color:rgba(255,196,83,.42)}
+.wish{position:absolute;top:11px;inset-inline-end:11px;z-index:2;width:31px;height:31px;border-radius:9px;display:grid;place-items:center;background:rgba(5,10,20,.6);border:1px solid rgba(255,255,255,.14);color:#c2cee2;backdrop-filter:blur(8px);transition:.22s}
+.wish .ic{width:15px;height:15px}
+.wish:hover,.wish.active{color:#ff7b9d;border-color:rgba(255,123,157,.5);background:rgba(255,123,157,.12)}
+.wish.active .ic{fill:currentColor}
+.p-body{padding:15px 15px 17px;display:flex;flex-direction:column;gap:7px;flex:1}
+.p-cat{font-size:.66rem;color:var(--cyan);font-weight:700;letter-spacing:.06em}
+.p-body h3{font-size:.97rem;font-weight:700;line-height:1.35;min-height:2.6em}
+.p-desc{font-size:.72rem;color:#8593aa;line-height:1.6;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;min-height:2.3em}
+.p-specs{display:flex;flex-wrap:wrap;gap:4px}
+.p-specs span{font-size:.62rem;color:#9fb0c9;border:1px solid rgba(255,255,255,.075);background:rgba(255,255,255,.028);padding:2px 6px;border-radius:5px;white-space:nowrap}
+.p-rating{display:flex;align-items:center;gap:5px;font-size:.68rem;color:#8b9ab2}
+.p-rating b{color:#dbe7f8;font-weight:700}
+.stars{display:flex;gap:1px;color:var(--gold)}
+.stars .ic{width:11px;height:11px}
+.p-foot{margin-top:auto;display:flex;align-items:flex-end;justify-content:space-between;gap:8px;padding-top:7px}
+.p-price{display:flex;flex-direction:column;line-height:1.35}
+.p-price strong{font-family:var(--font-en);font-size:1.02rem;font-weight:700;color:#fff;letter-spacing:.01em}
+.p-price strong small{font-family:var(--font-ar);font-size:.66rem;color:#a8b6cc;font-weight:500}
+.p-price s{font-family:var(--font-en);font-size:.65rem;color:#6d7b92}
+.add-btn{width:37px;height:37px;border-radius:10px;background:var(--grad);color:#fff;display:grid;place-items:center;flex:none;box-shadow:0 8px 20px rgba(45,150,255,.24);transition:.22s}
+.add-btn .ic{width:17px;height:17px;stroke-width:2.4}
+.add-btn:hover{transform:translateY(-2px) rotate(90deg);box-shadow:0 12px 26px rgba(45,180,255,.35)}
+.empty-state{grid-column:1/-1;text-align:center;padding:60px 20px;border:1px dashed var(--stroke);border-radius:16px;color:var(--muted);font-size:.9rem}
+/* ============ BUILD BANNER ============ */
+.build-banner{position:relative;border-radius:26px;overflow:hidden;border:1px solid rgba(45,226,255,.2);background:
+  linear-gradient(120deg,rgba(45,226,255,.13),rgba(79,124,255,.07) 46%,rgba(155,107,255,.15));
+  display:grid;grid-template-columns:1.12fr .88fr;align-items:center;gap:34px;padding:clamp(24px,4vw,44px)}
+.build-banner::before{content:"";position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.05) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.05) 1px,transparent 1px);background-size:46px 46px;-webkit-mask-image:linear-gradient(90deg,#000,transparent 70%);mask-image:linear-gradient(90deg,#000,transparent 70%);pointer-events:none}
+.build-copy{position:relative;z-index:1}
+.build-copy h2{font-size:clamp(1.6rem,2.8vw,2.3rem);font-weight:800;margin-bottom:10px}
+.build-copy p{color:#a8b8d0;font-size:.9rem;max-width:54ch;margin-bottom:20px}
+.build-steps{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:24px}
+.build-step{display:flex;align-items:center;gap:8px;font-size:.75rem;color:#c4d2e6;background:rgba(4,6,12,.38);border:1px solid rgba(255,255,255,.1);padding:6px 11px;border-radius:999px}
+.build-step b{width:18px;height:18px;border-radius:50%;background:rgba(45,226,255,.16);color:var(--cyan);font-family:var(--font-en);font-size:.62rem;display:grid;place-items:center}
+.build-img{position:relative;z-index:1;border-radius:18px;overflow:hidden;border:1px solid rgba(255,255,255,.14);box-shadow:0 24px 50px rgba(0,0,0,.42)}
+.build-img img{width:100%;height:270px;object-fit:cover;transition:transform .7s}
+.build-img:hover img{transform:scale(1.05)}
+/* ============ FEATURES ============ */
+.features-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.feature{padding:24px 20px;border-radius:18px;border:1px solid var(--stroke);background:linear-gradient(180deg,rgba(255,255,255,.04),rgba(255,255,255,.012));transition:.28s;position:relative;overflow:hidden}
+.feature::after{content:"";position:absolute;width:120px;height:120px;border-radius:50%;background:radial-gradient(circle,rgba(45,226,255,.15),transparent 70%);top:-50px;left:-50px;opacity:0;transition:.4s}
+.feature:hover{transform:translateY(-4px);border-color:rgba(45,226,255,.28)}
+.feature:hover::after{opacity:1}
+.feature-ic{width:46px;height:46px;border-radius:13px;display:grid;place-items:center;background:linear-gradient(135deg,rgba(45,226,255,.14),rgba(155,107,255,.12));border:1px solid rgba(45,226,255,.2);color:var(--cyan);margin-bottom:15px}
+.feature-ic .ic{width:21px;height:21px}
+.feature h3{font-size:.96rem;font-weight:700;margin-bottom:6px}
+.feature p{font-size:.76rem;color:var(--muted);line-height:1.7}
+/* ============ TESTIMONIALS ============ */
+.testi-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.testi{padding:24px 22px;border-radius:18px;border:1px solid var(--stroke);background:linear-gradient(180deg,rgba(255,255,255,.04),rgba(255,255,255,.012));position:relative;transition:.25s}
+.testi:hover{border-color:rgba(45,226,255,.25);transform:translateY(-3px)}
+.quote-mark{font-family:Georgia,serif;font-size:3.2rem;line-height:1;color:rgba(45,226,255,.18);position:absolute;top:8px;inset-inline-end:18px}
+.testi .stars{margin-bottom:12px}
+.testi p{font-size:.82rem;color:#b2c0d5;line-height:1.8;margin-bottom:18px;min-height:4.4em}
+.testi-who{display:flex;align-items:center;gap:10px;border-top:1px solid var(--stroke);padding-top:14px}
+.avatar{width:36px;height:36px;border-radius:50%;display:grid;place-items:center;font-family:var(--font-en);font-weight:700;font-size:.72rem;color:#031018;background:linear-gradient(135deg,#2de2ff,#4f7cff);flex:none}
+.testi-who b{display:block;font-size:.78rem;font-weight:700;line-height:1.4}
+.testi-who span{display:block;font-size:.66rem;color:var(--muted)}
+.verified{margin-inline-start:auto;color:var(--green);display:flex;align-items:center;gap:4px;font-size:.6rem}
+.verified .ic{width:13px;height:13px}
+/* ============ DELIVERY ============ */
+.delivery-panel{position:relative;border:1px solid var(--stroke);border-radius:24px;background:linear-gradient(180deg,rgba(255,255,255,.035),rgba(255,255,255,.012));padding:clamp(20px,3vw,32px);overflow:hidden}
+.delivery-panel::before{content:"";position:absolute;width:420px;height:420px;border-radius:50%;background:radial-gradient(circle,rgba(45,226,255,.1),transparent 65%);top:-200px;left:-120px;pointer-events:none}
+.delivery-top{display:flex;align-items:center;justify-content:space-between;gap:18px;flex-wrap:wrap;margin-bottom:20px;position:relative}
+.delivery-badges{display:flex;gap:9px;flex-wrap:wrap}
+.d-badge{display:flex;align-items:center;gap:7px;padding:7px 12px;border-radius:999px;border:1px solid rgba(45,226,255,.18);background:rgba(45,226,255,.055);font-size:.72rem;color:#b8eafa}
+.d-badge .ic{width:14px;height:14px;color:var(--cyan)}
+.delivery-tools{display:flex;align-items:center;gap:12px;flex-wrap:wrap;position:relative}
+.wilaya-count{font-size:.74rem;color:var(--muted);white-space:nowrap}
+.wilaya-count b{color:#fff;font-family:var(--font-en)}
+.wilaya-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(218px,1fr));gap:11px;position:relative}
+.w-card{border:1px solid rgba(255,255,255,.075);background:rgba(5,9,17,.45);border-radius:12px;padding:11px 13px;transition:.2s}
+.w-card:hover{border-color:rgba(45,226,255,.34);background:rgba(45,226,255,.055);transform:translateY(-2px)}
+.w-head{display:flex;align-items:center;gap:7px;margin-bottom:7px}
+.w-code{font-family:var(--font-en);font-size:.58rem;color:#8090a8;border:1px solid rgba(255,255,255,.11);border-radius:4px;padding:1px 4px;line-height:1.4;flex:none}
+.w-name{font-size:.84rem;font-weight:700;line-height:1.3}
+.w-zone{margin-inline-start:auto;font-size:.56rem;color:#75849b;white-space:nowrap}
+.w-rows{display:flex;flex-direction:column;gap:3px}
+.w-row{display:flex;align-items:center;justify-content:space-between;gap:8px;font-size:.67rem;color:#8f9fb6}
+.w-row b{color:#dce8f8;font-weight:600;font-family:var(--font-en);font-size:.69rem;white-space:nowrap}
+.w-time{display:flex;align-items:center;gap:5px;border-top:1px solid rgba(255,255,255,.06);margin-top:7px;padding-top:6px;font-size:.64rem;color:var(--cyan)}
+.w-time .ic{width:11px;height:11px}
+.delivery-note{display:flex;align-items:flex-start;gap:8px;margin-top:18px;padding-top:15px;border-top:1px solid var(--stroke);font-size:.72rem;color:var(--muted);position:relative}
+.delivery-note .ic{width:15px;height:15px;color:var(--gold);flex:none;margin-top:2px}
+.delivery-note b{color:#dbe7f8}
+/* ============ FAQ ============ */
+.faq-wrap{max-width:820px;margin-inline:auto}
+.faq-item{border:1px solid var(--stroke);border-radius:13px;background:rgba(255,255,255,.024);overflow:hidden;margin-bottom:9px;transition:border-color .2s,background .2s}
+.faq-item[open]{border-color:rgba(45,226,255,.3);background:rgba(45,226,255,.035)}
+.faq-item summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:14px;padding:15px 18px;font-weight:600;font-size:.9rem;transition:color .2s}
+.faq-item summary::-webkit-details-marker{display:none}
+.faq-item summary::after{content:"+";font-family:var(--font-en);font-size:1.25rem;color:var(--cyan);transition:transform .25s;line-height:1}
+.faq-item[open] summary::after{transform:rotate(45deg)}
+.faq-body{padding:0 18px 15px;color:var(--muted);font-size:.83rem;line-height:1.8;max-width:72ch}
+/* ============ CONTACT ============ */
+.contact-grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:34px;align-items:start}
+.contact-cards{display:grid;grid-template-columns:1fr 1fr;gap:11px;margin-top:24px}
+.contact-card{padding:15px;border-radius:13px;border:1px solid var(--stroke);background:rgba(255,255,255,.025);transition:.2s}
+.contact-card:hover{border-color:rgba(45,226,255,.28);background:rgba(45,226,255,.04)}
+.contact-card .ic{width:18px;height:18px;color:var(--cyan);margin-bottom:8px}
+.contact-card span{display:block;font-size:.64rem;color:var(--muted);margin-bottom:2px}
+.contact-card b{display:block;font-size:.78rem;font-weight:600;line-height:1.5;direction:ltr;text-align:start;word-break:break-word}
+.contact-card.ar b{direction:rtl}
+.socials{display:flex;gap:8px;margin-top:18px}
+.social-btn{width:38px;height:38px;border-radius:10px;border:1px solid var(--stroke);background:rgba(255,255,255,.03);display:grid;place-items:center;color:#aebbd0;transition:.2s}
+.social-btn:hover{color:#fff;border-color:rgba(45,226,255,.35);background:rgba(45,226,255,.07);transform:translateY(-2px)}
+.social-btn .ic{width:16px;height:16px}
+.contact-form{padding:clamp(20px,3vw,28px);border-radius:20px;border:1px solid var(--stroke);background:linear-gradient(180deg,rgba(255,255,255,.045),rgba(255,255,255,.015))}
+.contact-form h3{font-size:1.05rem;margin-bottom:4px}
+.contact-form>p{font-size:.74rem;color:var(--muted);margin-bottom:18px}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+/* ============ FOOTER ============ */
+.site-footer{border-top:1px solid var(--stroke);background:linear-gradient(180deg,rgba(255,255,255,.012),rgba(4,6,12,.7));padding-top:56px;position:relative;overflow:hidden}
+.site-footer::before{content:"";position:absolute;width:600px;height:300px;border-radius:50%;background:radial-gradient(ellipse,rgba(79,124,255,.1),transparent 70%);top:-160px;left:20%;pointer-events:none}
+.footer-grid{display:grid;grid-template-columns:1.5fr .8fr .8fr 1.1fr;gap:30px;padding-bottom:40px;position:relative}
+.footer-about p{font-size:.77rem;color:var(--muted);line-height:1.8;margin:16px 0 0;max-width:34ch}
+.footer-col h4{font-size:.8rem;font-weight:700;letter-spacing:.04em;margin-bottom:14px;color:#fff}
+.footer-col a,.footer-col span{display:block;font-size:.75rem;color:#8f9db4;margin-bottom:9px;transition:color .2s}
+.footer-col a:hover{color:var(--cyan)}
+.footer-contact .row{display:flex;align-items:center;gap:7px;font-size:.73rem;color:#8f9db4;margin-bottom:9px}
+.footer-contact .ic{width:14px;height:14px;color:var(--cyan);flex:none}
+.footer-bottom{border-top:1px solid var(--stroke);padding:18px 0;display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap;font-size:.68rem;color:#6f7d93;position:relative}
+.footer-bottom .pay{display:flex;gap:6px;flex-wrap:wrap}
+.pay-chip{border:1px solid var(--stroke);border-radius:6px;padding:3px 8px;font-size:.62rem;color:#a6b4c9;background:rgba(255,255,255,.025)}
+/* ============ FLOATING ============ */
+.float-wa{position:fixed;bottom:22px;left:22px;z-index:70;display:flex;align-items:center;gap:9px;padding:11px 16px;border-radius:999px;background:#1fb954;color:#fff;font-weight:700;font-size:.78rem;box-shadow:0 14px 34px rgba(31,185,84,.35);transition:.25s}
+.float-wa:hover{transform:translateY(-3px);box-shadow:0 18px 40px rgba(31,185,84,.45)}
+.float-wa .ic{width:20px;height:20px;fill:currentColor;stroke:none}
+.to-top{position:fixed;bottom:22px;right:22px;z-index:70;width:42px;height:42px;border-radius:12px;border:1px solid var(--stroke);background:rgba(8,13,24,.8);backdrop-filter:blur(14px);display:grid;place-items:center;color:#c6d3e6;opacity:0;visibility:hidden;transform:translateY(10px);transition:.25s}
+.to-top.show{opacity:1;visibility:visible;transform:none}
+.to-top:hover{border-color:rgba(45,226,255,.35);color:#fff}
+.to-top .ic{width:17px;height:17px}
+/* ============ OVERLAY / DRAWER ============ */
+.overlay{position:fixed;inset:0;z-index:100;background:rgba(2,4,9,.72);backdrop-filter:blur(4px);opacity:0;visibility:hidden;transition:.25s}
+.overlay.open{opacity:1;visibility:visible}
+.cart-drawer{position:fixed;top:0;bottom:0;left:0;z-index:110;width:min(410px,100%);background:#070c16;border-inline-end:1px solid var(--stroke);display:flex;flex-direction:column;transform:translateX(-102%);transition:transform .32s cubic-bezier(.2,.7,.2,1);box-shadow:30px 0 80px rgba(0,0,0,.55)}
+.cart-drawer.open{transform:none}
+.cart-head{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:18px 20px;border-bottom:1px solid var(--stroke)}
+.cart-head h3{font-size:1rem;display:flex;align-items:center;gap:8px}
+.cart-head h3 .ic{color:var(--cyan);width:18px;height:18px}
+.cart-head-count{font-family:var(--font-en);font-size:.66rem;color:var(--muted);font-weight:500}
+.drawer-close{width:34px;height:34px;border-radius:9px;border:1px solid var(--stroke);display:grid;place-items:center;color:#b7c4d8;transition:.2s}
+.drawer-close:hover{color:#fff;border-color:rgba(255,255,255,.25);background:rgba(255,255,255,.05)}
+.drawer-close .ic{width:16px;height:16px}
+.cart-body{flex:1;overflow-y:auto;padding:16px 20px}
+.cart-empty{text-align:center;padding:60px 10px;color:var(--muted)}
+.cart-empty .empty-ic{width:68px;height:68px;border-radius:50%;background:rgba(45,226,255,.07);border:1px solid rgba(45,226,255,.16);display:grid;place-items:center;margin:0 auto 16px;color:var(--cyan)}
+.cart-empty .empty-ic .ic{width:28px;height:28px}
+.cart-empty h4{color:#fff;font-size:.95rem;margin-bottom:5px}
+.cart-empty p{font-size:.76rem;margin-bottom:18px}
+.cart-item{display:grid;grid-template-columns:66px 1fr auto;gap:11px;padding:11px 0;border-bottom:1px solid rgba(255,255,255,.055)}
+.cart-item img{width:66px;height:66px;border-radius:10px;object-fit:cover;border:1px solid var(--stroke);background:#0b1220}
+.ci-info{min-width:0}
+.ci-info h4{font-size:.78rem;font-weight:700;line-height:1.4;margin-bottom:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.ci-info .ci-price{font-family:var(--font-en);font-size:.66rem;color:var(--muted)}
+.qty{display:inline-flex;align-items:center;gap:2px;margin-top:7px;border:1px solid var(--stroke);border-radius:7px;overflow:hidden}
+.qty button{width:24px;height:24px;display:grid;place-items:center;color:#b8c6db;transition:.2s}
+.qty button:hover{background:rgba(45,226,255,.1);color:#fff}
+.qty button .ic{width:11px;height:11px}
+.qty span{min-width:24px;text-align:center;font-family:var(--font-en);font-size:.68rem;font-weight:600}
+.ci-side{display:flex;flex-direction:column;align-items:flex-end;justify-content:space-between;gap:6px}
+.ci-side b{font-family:var(--font-en);font-size:.72rem;color:#fff;white-space:nowrap}
+.ci-remove{color:#75849b;transition:.2s;padding:4px}
+.ci-remove:hover{color:#ff7b8a}
+.ci-remove .ic{width:14px;height:14px}
+.cart-foot{border-top:1px solid var(--stroke);padding:16px 20px 20px;background:rgba(255,255,255,.015)}
+.ship-progress{margin-bottom:14px}
+.ship-progress p{display:flex;justify-content:space-between;gap:8px;font-size:.67rem;color:var(--muted);margin-bottom:6px}
+.ship-progress p b{color:var(--cyan);font-family:var(--font-en)}
+.progress{height:5px;border-radius:99px;background:rgba(255,255,255,.07);overflow:hidden}
+.progress span{display:block;height:100%;border-radius:99px;background:var(--grad);width:0;transition:width .4s}
+.cart-total{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px;font-size:.8rem;color:var(--muted)}
+.cart-total b{font-family:var(--font-en);font-size:1.05rem;color:#fff}
+.cart-note{display:flex;align-items:center;justify-content:center;gap:6px;font-size:.63rem;color:#6f7d93;margin-top:11px}
+.cart-note .ic{width:12px;height:12px;color:var(--green)}
+/* ============ MODAL / CHECKOUT ============ */
+.modal{position:fixed;inset:0;z-index:120;display:grid;place-items:center;padding:18px;background:rgba(2,4,9,.78);backdrop-filter:blur(6px);opacity:0;visibility:hidden;transition:.25s;overflow-y:auto}
+.modal.open{opacity:1;visibility:visible}
+.modal-card{width:min(940px,100%);max-height:92vh;overflow-y:auto;border-radius:22px;background:#080d18;border:1px solid rgba(255,255,255,.12);box-shadow:0 40px 110px rgba(0,0,0,.7);transform:translateY(18px) scale(.985);transition:.28s;position:relative}
+.modal.open .modal-card{transform:none}
+.modal-close{position:absolute;top:14px;inset-inline-end:14px;z-index:5;width:34px;height:34px;border-radius:9px;border:1px solid var(--stroke);background:rgba(8,13,24,.7);display:grid;place-items:center;color:#b7c4d8;transition:.2s}
+.modal-close:hover{color:#fff;border-color:rgba(255,255,255,.25);background:rgba(255,255,255,.06)}
+.modal-close .ic{width:16px;height:16px}
+.checkout-view{padding:26px}
+.checkout-view>h3{font-size:1.25rem;margin-bottom:4px}
+.checkout-view>p{font-size:.76rem;color:var(--muted);margin-bottom:22px}
+.checkout-grid{display:grid;grid-template-columns:1.08fr .92fr;gap:26px;align-items:start}
+.checkout-form h4,.order-summary h4{font-size:.86rem;margin-bottom:14px;display:flex;align-items:center;gap:7px}
+.checkout-form h4 .ic,.order-summary h4 .ic{width:15px;height:15px;color:var(--cyan)}
+/* form fields */
+.field{display:flex;flex-direction:column;gap:5px;margin-bottom:12px}
+.field label{font-size:.72rem;color:#b6c3d7;font-weight:600}
+.field label .req{color:#ff7b8a;margin-inline-start:2px}
+.input,select,textarea{width:100%;background:rgba(255,255,255,.038);border:1px solid rgba(255,255,255,.1);border-radius:10px;padding:10px 13px;color:#fff;outline:none;transition:.2s;font-size:.84rem}
+.input::placeholder,textarea::placeholder{color:#5f6d83}
+.input:focus,select:focus,textarea:focus{border-color:rgba(45,226,255,.55);box-shadow:0 0 0 3px rgba(45,226,255,.09);background:rgba(45,226,255,.03)}
+select{appearance:none;-webkit-appearance:none;background-image:url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' fill='none' stroke='%238e9bb3' stroke-width='2'%3E%3Cpath d='m3 5 4 4 4-4'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:left 13px center;padding-left:36px}
+select option{background:#0a101d;color:#fff}
+textarea{resize:vertical;min-height:70px}
+.field.invalid .input,.field.invalid select,.field.invalid textarea{border-color:rgba(255,107,129,.7);box-shadow:0 0 0 3px rgba(255,107,129,.08)}
+.err{font-size:.63rem;color:#ff8a98;min-height:0;display:none}
+.field.invalid .err{display:block}
+.delivery-options{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:2px}
+.radio-card{position:relative;display:block;cursor:pointer}
+.radio-card input{position:absolute;opacity:0;width:0;height:0}
+.rc-ui{display:flex;align-items:flex-start;gap:8px;padding:10px 11px;border-radius:10px;border:1px solid rgba(255,255,255,.1);background:rgba(255,255,255,.03);transition:.2s;font-size:.71rem;line-height:1.45;color:#aebbd0}
+.rc-ui .ic{width:15px;height:15px;color:#7d8ba1;flex:none;margin-top:2px}
+.rc-ui b{display:block;color:#e4edfb;font-weight:600;font-size:.73rem}
+.radio-card:has(input:checked) .rc-ui{border-color:rgba(45,226,255,.55);background:rgba(45,226,255,.07);box-shadow:0 0 0 2px rgba(45,226,255,.08)}
+.radio-card:has(input:checked) .rc-ui .ic{color:var(--cyan)}
+/* summary */
+.order-summary{border:1px solid var(--stroke);border-radius:14px;background:rgba(255,255,255,.022);padding:16px}
+.sum-items{display:flex;flex-direction:column;gap:8px;max-height:210px;overflow-y:auto;padding-inline-end:5px;margin-bottom:12px}
+.sum-item{display:flex;align-items:flex-start;justify-content:space-between;gap:10px;font-size:.71rem;color:#a9b7cd}
+.sum-item span{line-height:1.5}
+.sum-item b{font-family:var(--font-en);color:#e4edfb;white-space:nowrap;font-weight:600;font-size:.68rem}
+.sum-line{display:flex;align-items:center;justify-content:space-between;gap:10px;border-top:1px solid rgba(255,255,255,.07);padding-top:9px;margin-top:9px;font-size:.72rem;color:#9baac1}
+.sum-line b{font-family:var(--font-en);color:#e4edfb;font-weight:600}
+.sum-total{display:flex;align-items:center;justify-content:space-between;gap:10px;border-top:1px solid rgba(255,255,255,.12);padding-top:11px;margin-top:11px;font-size:.8rem;color:#fff}
+.sum-total b{font-family:var(--font-en);font-size:1.05rem;color:var(--cyan)}
+.cod-badge{display:flex;align-items:center;gap:7px;margin-top:13px;padding:8px 10px;border-radius:8px;background:rgba(52,227,164,.07);border:1px solid rgba(52,227,164,.18);font-size:.65rem;color:#9ef0c9}
+.cod-badge .ic{width:14px;height:14px;flex:none}
+/* success */
+.success-view{padding:38px 26px;text-align:center}
+.success-ic{width:78px;height:78px;border-radius:50%;background:rgba(45,226,255,.09);border:1px solid rgba(45,226,255,.42);display:grid;place-items:center;margin:0 auto 18px;color:var(--cyan);box-shadow:0 0 46px rgba(45,226,255,.2)}
+.success-ic .ic{width:34px;height:34px;stroke-width:2.2}
+.success-view h3{font-size:1.35rem;margin-bottom:6px}
+.success-view>p{color:var(--muted);font-size:.8rem;max-width:48ch;margin:0 auto 22px}
+.success-meta{max-width:440px;margin:0 auto 22px;border:1px solid var(--stroke);border-radius:13px;background:rgba(255,255,255,.025);padding:14px 16px;text-align:start}
+.sm-row{display:flex;align-items:center;justify-content:space-between;gap:12px;font-size:.72rem;color:#94a3ba;padding:5px 0}
+.sm-row b{color:#e4edfb;font-weight:600;font-size:.74rem}
+.sm-row .mono{font-family:var(--font-en);color:var(--cyan)}
+.success-actions{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
+/* ============ TOAST ============ */
+.toast-wrap{position:fixed;bottom:24px;left:50%;transform:translateX(-50%);z-index:200;display:flex;flex-direction:column;gap:8px;align-items:center;pointer-events:none;width:max-content;max-width:calc(100% - 30px)}
+.toast{display:flex;align-items:center;gap:9px;padding:11px 16px;border-radius:10px;background:rgba(8,14,25,.96);border:1px solid rgba(45,226,255,.3);box-shadow:0 16px 40px rgba(0,0,0,.5);font-size:.76rem;color:#e6effc;animation:toastIn .3s both}
+.toast .ic{width:16px;height:16px;color:var(--cyan);flex:none}
+.toast.out{animation:toastOut .3s both}
+@keyframes toastIn{from{opacity:0;transform:translateY(12px)}}
+@keyframes toastOut{to{opacity:0;transform:translateY(10px)}}
+/* ============ MOBILE NAV ============ */
+.mobile-nav{position:fixed;inset:0;z-index:115;background:rgba(4,6,12,.97);backdrop-filter:blur(20px);display:flex;flex-direction:column;padding:22px;opacity:0;visibility:hidden;transition:.25s;transform:translateY(-8px)}
+.mobile-nav.open{opacity:1;visibility:visible;transform:none}
+.mobile-nav-head{display:flex;align-items:center;justify-content:space-between;padding-bottom:18px;border-bottom:1px solid var(--stroke)}
+.mobile-nav nav{display:flex;flex-direction:column;padding:18px 0}
+.mobile-nav nav a{font-size:1.15rem;font-weight:600;padding:13px 4px;border-bottom:1px solid rgba(255,255,255,.055);display:flex;align-items:center;justify-content:space-between;color:#dbe6f6}
+.mobile-nav nav a .ic{width:16px;height:16px;color:#61708a}
+.mobile-nav-foot{margin-top:auto;display:flex;flex-direction:column;gap:10px;padding-top:18px;border-top:1px solid var(--stroke)}
+.mobile-nav-foot .socials{margin-top:4px}
+/* ============ REVEAL ============ */
+.reveal{opacity:0;transform:translateY(24px);transition:opacity .7s ease,transform .7s cubic-bezier(.2,.7,.2,1);transition-delay:var(--d,0s)}
+.reveal.in{opacity:1;transform:none}
+/* ============ RESPONSIVE ============ */
+@media (max-width:1100px){
+  .products-grid{grid-template-columns:repeat(3,1fr)}
+  .footer-grid{grid-template-columns:1.3fr .8fr .8fr;}
+  .footer-grid .footer-col:last-child{grid-column:1/-1}
+}
+@media (max-width:980px){
+  .nav{display:none}
+  .menu-btn{display:grid}
+  .hero-grid{grid-template-columns:1fr;gap:44px}
+  .hero-copy{max-width:660px}
+  .hero-visual{margin-top:6px}
+  .hero-card{width:min(100%,430px)}
+  .hero-media img{height:470px}
+  .hero-stats{max-width:520px}
+  .features-grid{grid-template-columns:repeat(2,1fr)}
+  .testi-grid{grid-template-columns:1fr 1fr}
+  .contact-grid{grid-template-columns:1fr;gap:26px}
+  .checkout-grid{grid-template-columns:1fr}
+  .order-summary{order:-1}
+  .build-banner{grid-template-columns:1fr;gap:24px}
+  .build-img img{height:220px}
+}
+@media (max-width:760px){
+  .topbar-inner{gap:16px;font-size:.7rem}
+  .topbar-item:nth-child(3){display:none}
+  .header-inner{min-height:70px;gap:16px}
+  .header-actions .btn{display:none}
+  .logo-text{font-size:1.15rem}
+  .hero h1{font-size:clamp(2.2rem,9vw,3.2rem)}
+  .products-grid{grid-template-columns:repeat(2,1fr);gap:13px}
+  .p-body h3{font-size:.88rem;min-height:2.7em}
+  .p-desc{display:none}
+  .p-specs span:nth-child(n+3){display:none}
+  .p-price strong{font-size:.9rem}
+  .testi-grid{grid-template-columns:1fr}
+  .contact-cards{grid-template-columns:1fr 1fr}
+  .form-row{grid-template-columns:1fr}
+  .footer-grid{grid-template-columns:1fr 1fr;gap:26px}
+  .footer-about{grid-column:1/-1}
+  .footer-grid .footer-col:last-child{grid-column:1/-1}
+  .footer-bottom{justify-content:center;text-align:center}
+  .float-wa span{display:none}
+  .float-wa{padding:13px;border-radius:50%}
+  .float-chip{transform:scale(.88)}
+  .chip-1{inset-inline-start:-8px;top:12%}
+  .chip-2{inset-inline-end:-6px}
+  .chip-3{display:none}
+  .section{padding:56px 0}
+  .toolbar{flex-direction:column;align-items:stretch}
+  .search-box{width:100%;min-width:0}
+  .filters{overflow-x:auto;flex-wrap:nowrap;padding-bottom:3px;scrollbar-width:none}
+  .filters::-webkit-scrollbar{display:none}
+  .filter-btn{white-space:nowrap}
+  .delivery-top{align-items:flex-start;flex-direction:column}
+  .delivery-tools{width:100%}
+  .delivery-tools .search-box{flex:1}
+  .checkout-view{padding:22px 16px}
+  .modal{padding:0;align-items:end}
+  .modal-card{max-height:94vh;border-radius:20px 20px 0 0;width:100%}
+  .toast-wrap{bottom:80px}
+}
+@media (max-width:480px){
+  .container{width:calc(100% - 30px)}
+  .hero-stats{grid-template-columns:1fr 1fr;gap:14px 0}
+  .stat{padding-inline-end:18px;margin-inline-end:18px}
+  .stat:nth-child(2){border-inline-end:0;margin-inline-end:0;padding-inline-end:0}
+  .products-grid{grid-template-columns:1fr}
+  .p-body h3{min-height:0}
+  .p-desc{display:-webkit-box}
+  .p-specs span:nth-child(n+3){display:inline}
+  .contact-cards{grid-template-columns:1fr}
+  .delivery-options{grid-template-columns:1fr}
+  .hero-cta .btn{width:100%}
+  .success-actions .btn{width:100%}
+}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.001ms !important;animation-iteration-count:1 !important;transition-duration:.001ms !important;scroll-behavior:auto !important}
+  .reveal{opacity:1;transform:none}
+}
+</style>
+</head>
+<body>
+<!-- SVG ICONS -->
+<svg xmlns="http://www.w3.org/2000/svg" style="display:none" aria-hidden="true">
+  <symbol id="i-cart" viewBox="0 0 24 24"><path d="M3 3h2l2.4 12.2a2 2 0 0 0 2 1.6h8.7a2 2 0 0 0 2-1.6L22 7H6"/><circle cx="9.5" cy="20" r="1.4"/><circle cx="18" cy="20" r="1.4"/></symbol>
+  <symbol id="i-menu" viewBox="0 0 24 24"><path d="M3 6h18M3 12h18M3 18h18"/></symbol>
+  <symbol id="i-close" viewBox="0 0 24 24"><path d="M18 6 6 18M6 6l12 12"/></symbol>
+  <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M19 12H5M12 19l-7-7 7-7"/></symbol>
+  <symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></symbol>
+  <symbol id="i-minus" viewBox="0 0 24 24"><path d="M5 12h14"/></symbol>
+  <symbol id="i-trash" viewBox="0 0 24 24"><path d="M3 6h18M8 6V4h8v2M19 6l-1 14H6L5 6M10 11v6M14 11v6"/></symbol>
+  <symbol id="i-check" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></symbol>
+  <symbol id="i-truck" viewBox="0 0 24 24"><path d="M1 4h13v13H1zM14 9h4l3 3v5h-7"/><circle cx="5.5" cy="19.5" r="1.8"/><circle cx="17.5" cy="19.5" r="1.8"/></symbol>
+  <symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10Z"/><path d="m9 12 2 2 4-4"/></symbol>
+  <symbol id="i-card" viewBox="0 0 24 24"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20"/></symbol>
+  <symbol id="i-support" viewBox="0 0 24 24"><path d="M4 13a8 8 0 0 1 16 0"/><path d="M4 13v3a2 2 0 0 0 2 2h1v-6H5a1 1 0 0 0-1 1ZM20 13v3a2 2 0 0 1-2 2h-1v-6h2a1 1 0 0 1 1 1Z"/><path d="M17 19a3 3 0 0 1-3 2h-2"/></symbol>
+  <symbol id="i-heart" viewBox="0 0 24 24"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.6l-1-1a5.5 5.5 0 0 0-7.8 7.8l1 1L12 21l7.8-7.6 1-1a5.5 5.5 0 0 0 0-7.8Z"/></symbol>
+  <symbol id="i-star" viewBox="0 0 24 24"><path d="m12 2 2.9 6.3 6.9.8-5.1 4.7 1.4 6.8L12 17.3l-6.1 3.3 1.4-6.8L2.2 9.1l6.9-.8L12 2Z"/></symbol>
+  <symbol id="i-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></symbol>
+  <symbol id="i-phone" viewBox="0 0 24 24"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 2 .7 2.9a2 2 0 0 1-.4 2.1L8.1 10a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.9.6 2.9.7a2 2 0 0 1 1.6 2Z"/></symbol>
+  <symbol id="i-mail" viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 7 10 6 10-6"/></symbol>
+  <symbol id="i-pin" viewBox="0 0 24 24"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></symbol>
+  <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></symbol>
+  <symbol id="i-up" viewBox="0 0 24 24"><path d="M12 19V5M5 12l7-7 7 7"/></symbol>
+  <symbol id="i-spark" viewBox="0 0 24 24"><path d="M12 3v3M12 18v3M3 12h3M18 12h3M5.6 5.6l2.1 2.1M16.3 16.3l2.1 2.1M18.4 5.6l-2.1 2.1M7.7 16.3 5.6 18.4"/><circle cx="12" cy="12" r="3"/></symbol>
+  <symbol id="i-cpu" viewBox="0 0 24 24"><rect x="6" y="6" width="12" height="12" rx="2"/><path d="M9 2v4M15 2v4M9 18v4M15 18v4M2 9h4M2 15h4M18 9h4M18 15h4"/></symbol>
+  <symbol id="i-monitor" viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></symbol>
+  <symbol id="i-gpu" viewBox="0 0 24 24"><rect x="2" y="6" width="20" height="11" rx="2"/><circle cx="8" cy="11.5" r="2.6"/><circle cx="16" cy="11.5" r="2.6"/><path d="M6 17v3M18 17v3"/></symbol>
+  <symbol id="i-bolt" viewBox="0 0 24 24"><path d="M13 2 4 14h7l-1 8 9-12h-7l1-8Z"/></symbol>
+  <symbol id="i-gift" viewBox="0 0 24 24"><rect x="3" y="8" width="18" height="13" rx="2"/><path d="M12 8v13M3 12h18"/><path d="M7.5 8a2.5 2.5 0 1 1 0-5C10 3 12 8 12 8s2-5 4.5-5a2.5 2.5 0 1 1 0 5"/></symbol>
+  <symbol id="i-whatsapp" viewBox="0 0 24 24"><path d="M12 2a10 10 0 0 0-8.6 15L2 22l5.2-1.4A10 10 0 1 0 12 2Z" fill="currentColor" stroke="none"/><path d="M8.7 7.3c-.3 0-.6.1-.9.4-.3.3-1.1 1.1-1.1 2.6s1.1 3 1.3 3.2c.1.2 2.2 3.5 5.4 4.8 2.7 1.1 3.2.9 3.8.8.6-.1 1.8-.7 2-1.4.2-.7.2-1.3.2-1.4-.1-.1-.3-.2-.6-.3l-2.1-1c-.3-.1-.5-.1-.7.1l-1 1.2c-.2.2-.3.2-.6.1-.3-.1-1.4-.5-2.6-1.6-1-.9-1.6-1.9-1.8-2.3-.2-.3 0-.5.1-.6l.5-.6c.2-.2.2-.4.3-.6.1-.2 0-.4 0-.6l-.9-2.2c-.2-.5-.5-.5-.7-.5h-.2Z" fill="#07120a" stroke="none"/></symbol>
+  <symbol id="i-instagram" viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></symbol>
+  <symbol id="i-facebook" viewBox="0 0 24 24"><path d="M15 3h-3a4 4 0 0 0-4 4v3H5v4h3v7h4v-7h3l1-4h-4V7a1 1 0 0 1 1-1h3V3Z" fill="currentColor" stroke="none"/></symbol>
+</svg>
+
+<div class="bg-fx" aria-hidden="true">
+  <div class="bg-grid"></div>
+  <div class="orb orb-1"></div>
+  <div class="orb orb-2"></div>
+  <div class="orb orb-3"></div>
+</div>
+
+<!-- TOPBAR -->
+<div class="topbar">
+  <div class="container topbar-inner">
+    <div class="topbar-item"><svg class="ic"><use href="#i-truck"/></svg> توصيل إلى 58 ولاية</div>
+    <div class="topbar-item"><svg class="ic"><use href="#i-card"/></svg> الدفع عند الاستلام</div>
+    <div class="topbar-item"><svg class="ic"><use href="#i-shield"/></svg> ضمان رسمي حتى 36 شهراً</div>
+    <div class="topbar-item"><svg class="ic"><use href="#i-phone"/></svg> <span dir="ltr">0550 00 00 00</span></div>
+  </div>
+</div>
+
+<!-- HEADER -->
+<header class="site-header" id="siteHeader">
+  <div class="container header-inner">
+    <a class="logo" href="#home" aria-label="PEDROO — الصفحة الرئيسية">
+      <span class="logo-mark">
+        <svg viewBox="0 0 48 48" aria-hidden="true"><path d="M17 12h9.2c4.3 0 7.3 2.8 7.3 6.9 0 4.2-3 7-7.3 7H22v10h-5V12Zm5 4.4v5.2h3.9c1.7 0 2.7-1 2.7-2.6 0-1.6-1-2.6-2.7-2.6H22Z" fill="#05070e"/></svg>
+      </span>
+      <span>
+        <span class="logo-text">PEDROO</span>
+        <span class="logo-sub">TECH STORE · DZ</span>
+      </span>
+    </a>
+    <nav class="nav" aria-label="التنقل الرئيسي">
+      <a href="#home" class="active">الرئيسية</a>
+      <a href="#products">المنتجات</a>
+      <a href="#why">لماذا PEDROO</a>
+      <a href="#delivery">التوصيل</a>
+      <a href="#faq">الأسئلة الشائعة</a>
+      <a href="#contact">تواصل معنا</a>
+    </nav>
+    <div class="header-actions">
+      <button class="icon-btn" id="cartBtn" aria-label="عرض سلة التسوق" aria-expanded="false" aria-controls="cartDrawer">
+        <svg class="ic"><use href="#i-cart"/></svg>
+        <span class="cart-count" id="cartCount" hidden>0</span>
+      </button>
+      <a href="#products" class="btn btn-primary btn-sm">تسوّق الآن <svg class="ic"><use href="#i-arrow"/></svg></a>
+      <button class="icon-btn menu-btn" id="menuBtn" aria-label="فتح القائمة" aria-expanded="false" aria-controls="mobileNav">
+        <svg class="ic"><use href="#i-menu"/></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main id="home">
+<!-- HERO -->
+<section class="hero">
+  <div class="container hero-grid">
+    <div class="hero-copy">
+      <span class="eyebrow"><span class="dot"></span> PEDROO · متجر العتاد التقني في الجزائر</span>
+      <h1>أداء استثنائي،<br><span class="grad-text">للاعبين الحقيقيين.</span></h1>
+      <p>حواسيب ألعاب، مكونات أصلية وملحقات احترافية مختارة بعناية. نبني لك تجهيزاً يليق بمستواك — مع توصيل لكل ولايات الجزائر، دفع عند الاستلام وضمان رسمي.</p>
+      <div class="hero-cta">
+        <a href="#products" class="btn btn-primary">تسوّق المنتجات <svg class="ic"><use href="#i-arrow"/></svg></a>
+        <a href="#builder" class="btn btn-ghost"><svg class="ic"><use href="#i-spark"/></svg> اطلب جهازك المخصص</a>
+      </div>
+      <div class="hero-stats">
+        <div class="stat"><b data-counter="1200" data-suffix="+">1,200+</b><span>عميل يثق بنا</span></div>
+        <div class="stat"><b><span data-counter="58">58</span></b><span>ولاية مغطاة</span></div>
+        <div class="stat"><b><span data-counter="24">24</span> شهر</b><span>ضمان رسمي</span></div>
+        <div class="stat"><b><span data-counter="4.9" data-decimals="1">4.9</span><span style="font-size:.65em;color:#8e9bb3">/5</span></b><span>تقييم العملاء</span></div>
+      </div>
+    </div>
+    <div class="hero-visual" id="heroVisual">
+      <div class="hero-ring" aria-hidden="true"></div>
+      <div class="hero-card" id="heroCard">
+        <div class="hero-media">
+          <img src="assets/pc-titan.jpg" alt="حاسوب ألعاب PEDROO TITAN X بكروت شاشة RTX" fetchpriority="high">
+          <div class="hero-tag">
+            <div><span>PEDROO</span><b>TITAN X</b><small>RTX 4070 SUPER · i7 · 32GB</small></div>
+            <div class="price">329.900 دج</div>
+          </div>
+        </div>
+      </div>
+      <div class="float-chip chip-1">
+        <span class="chip-ic"><svg class="ic"><use href="#i-gpu"/></svg></span>
+        <div><b>RTX 4070 SUPER</b><small>أداء 4K فائق</small></div>
+      </div>
+      <div class="float-chip chip-2">
+        <span class="chip-ic"><svg class="ic"><use href="#i-monitor"/></svg></span>
+        <div><b>165 Hz · 1ms</b><small>سلاسة مطلقة</small></div>
+      </div>
+      <div class="float-chip chip-3">
+        <span class="chip-ic"><svg class="ic"><use href="#i-shield"/></svg></span>
+        <div><b>ضمان 24 شهر</b><small>أصلي 100%</small></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BRANDS -->
+<div class="brands" aria-label="العلامات التجارية التي نتعامل معها">
+  <div class="brands-track">
+    <div class="brand-group">
+      <span>ASUS ROG</span><span>MSI</span><span>NVIDIA</span><span>AMD</span><span>INTEL</span><span>CORSAIR</span><span>LOGITECH G</span><span>KINGSTON</span><span>SAMSUNG</span>
+    </div>
+    <div class="brand-group" aria-hidden="true">
+      <span>ASUS ROG</span><span>MSI</span><span>NVIDIA</span><span>AMD</span><span>INTEL</span><span>CORSAIR</span><span>LOGITECH G</span><span>KINGSTON</span><span>SAMSUNG</span>
+    </div>
+  </div>
+</div>
+<!-- PRODUCTS -->
+<section class="section" id="products">
+  <div class="container">
+    <div class="head-row">
+      <div class="section-head reveal">
+        <div class="sec-eyebrow">متجرنا</div>
+        <h2>معدات تصنع الفرق</h2>
+        <p>من الحواسيب الجاهزة إلى أدق المكونات — كل ما تحتاجه لتجهيز احترافي، بأسعار تنافسية وضمان حقيقي.</p>
+      </div>
+      <div class="search-box reveal">
+        <svg class="ic"><use href="#i-search"/></svg>
+        <input id="productSearch" type="search" placeholder="ابحث عن منتج..." aria-label="البحث في المنتجات" autocomplete="off">
+      </div>
+    </div>
+    <div class="toolbar reveal">
+      <div class="filters" id="filters" role="tablist" aria-label="تصنيفات المنتجات">
+        <button class="filter-btn active" data-filter="all" role="tab" aria-selected="true">الكل</button>
+        <button class="filter-btn" data-filter="pc" role="tab" aria-selected="false">حواسيب جاهزة</button>
+        <button class="filter-btn" data-filter="components" role="tab" aria-selected="false">مكونات</button>
+        <button class="filter-btn" data-filter="monitor" role="tab" aria-selected="false">شاشات</button>
+        <button class="filter-btn" data-filter="accessories" role="tab" aria-selected="false">ملحقات</button>
+        <button class="filter-btn" data-filter="laptop" role="tab" aria-selected="false">لابتوبات</button>
+      </div>
+      <span class="wilaya-count" id="productCount">10 منتجات</span>
+    </div>
+    <div class="products-grid" id="productsGrid" aria-live="polite"></div>
+  </div>
+</section>
+
+<!-- CUSTOM BUILD -->
+<section class="section" id="builder" style="padding-top:0">
+  <div class="container">
+    <div class="build-banner reveal">
+      <div class="build-copy">
+        <div class="sec-eyebrow">تجميع مخصص</div>
+        <h2>جهاز أحلامك يبدأ من هنا</h2>
+        <p>أخبرنا بميزانيتك والألعاب التي تلعبها، وسنجهّز لك أفضل توليفة أداء/سعر — مع اختبار كامل قبل الشحن.</p>
+        <div class="build-steps">
+          <span class="build-step"><b>1</b> اختر ميزانيتك</span>
+          <span class="build-step"><b>2</b> نقترح التوليفة</span>
+          <span class="build-step"><b>3</b> نجهّزه ونوصله</span>
+        </div>
+        <a href="#contact" class="btn btn-primary">اطلب تجميع مخصص <svg class="ic"><use href="#i-arrow"/></svg></a>
+      </div>
+      <div class="build-img">
+        <img src="assets/build.jpg" alt="داخل حاسوب ألعاب مخصص بإضاءة RGB">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHY -->
+<section class="section" id="why">
+  <div class="container">
+    <div class="section-head center reveal">
+      <div class="sec-eyebrow">لماذا PEDROO</div>
+      <h2>لماذا يختارنا اللاعبون؟</h2>
+      <p>لأننا لا نبيع قطعاً فقط — بل نبني تجربة شراء واضحة، آمنة ومصممة حول احتياجك.</p>
+    </div>
+    <div class="features-grid">
+      <article class="feature reveal" style="--d:.05s">
+        <span class="feature-ic"><svg class="ic"><use href="#i-shield"/></svg></span>
+        <h3>عتاد أصلي 100%</h3>
+        <p>مكونات جديدة ومختبرة داخل ورشتنا، مع ضمان رسمي وفاتورة مع كل طلب.</p>
+      </article>
+      <article class="feature reveal" style="--d:.12s">
+        <span class="feature-ic"><svg class="ic"><use href="#i-truck"/></svg></span>
+        <h3>توصيل لكل الجزائر</h3>
+        <p>نغطي 58 ولاية عبر شركاء توصيل موثوقين، للمنزل أو مكتب التوصيل.</p>
+      </article>
+      <article class="feature reveal" style="--d:.19s">
+        <span class="feature-ic"><svg class="ic"><use href="#i-card"/></svg></span>
+        <h3>الدفع عند الاستلام</h3>
+        <p>افحص طلبك أولاً ثم ادفع. بديل متاح: التحويل البريدي أو البنكي.</p>
+      </article>
+      <article class="feature reveal" style="--d:.26s">
+        <span class="feature-ic"><svg class="ic"><use href="#i-support"/></svg></span>
+        <h3>دعم فني حقيقي</h3>
+        <p>فريق مختص يساعدك في اختيار القطع، التجميع والتركيب — 7 أيام في الأسبوع.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="section" id="reviews" style="padding-top:0">
+  <div class="container">
+    <div class="head-row">
+      <div class="section-head reveal">
+        <div class="sec-eyebrow">آراء العملاء</div>
+        <h2>ثقة تُبنى بالأداء</h2>
+        <p>أكثر من 1,200 عميل في الجزائر اختاروا PEDROO لتجهيزاتهم. هذه بعض تجاربهم.</p>
+      </div>
+      <div class="d-badge reveal"><svg class="ic"><use href="#i-star"/></svg> 4.9 من 5 — 327 تقييماً</div>
+    </div>
+    <div class="testi-grid">
+      <article class="testi reveal" style="--d:.05s">
+        <span class="quote-mark">”</span>
+        <div class="stars" aria-label="5 نجوم"><svg class="ic ic-star"><use href="#i-star"/></svg><svg class="ic ic-star"><use href="#i-star"/></svg><svg class="ic ic-star"><use href="#i-star"/></svg><svg class="ic ic-star"><use href="#i-star"/></svg><svg class="ic ic-star"><use href="#i-star"/></svg></div>
+        <p>طلبت جهاز TITAN X ووصلني في 48 ساعة. التركيب نظيف والأداء فوق التوقعات، والدعم ساعدني حتى في إعداد الشاشة.</p>
+        <div class="testi-who">
+          <span class="avatar">أب</span>
+          <div><b>أمين بلقاسم</b><span>الجزائر العاصمة</span></div>
+          <span class="verified"><svg class="ic"><use href="#i-check"/></svg> شراء موثق</span>
+        </div>
+      </article>
+      <article class="testi reveal" style="--d:.12s">
+        <span class="quote-mark">”</span>
+        <div class="stars" aria-label="5 نجوم"><svg class="ic ic-star"><use href="#i-star"/></svg><svg class="ic ic-star"><use href="#i-star"/></svg><svg class="ic ic-star"><use href="#i-star"/></svg><svg class="ic ic-star"><use href="#i-star"/></svg><svg class="ic ic-star"><use href="#i-star"/></svg></div>
+        <p>تعامل راقٍ وأسعار منافسة. اشتريت لابتوب AIR 14 وكان مطابقاً للوصف تماماً، والتغليف احترافي جداً.</p>
+        <div class="testi-who">
+          <span class="avatar">سك</span>
+          <div><b>سارة كريم</b><span>وهران</span></div>
+          <span class="verified"><svg class="ic"><use href="#i-check"/></svg> شراء موثق</span>
+        </div>
+      </article>
+      <article class="testi reveal" style="--d:.19s">
+        <span class="quote-mark">”</span>
+        <div class="stars" aria-label="5 نجوم"><svg class="ic ic-star"><use href="#i-star"/></svg><svg class="ic ic-star"><use href="#i-star"/></svg><svg class="ic ic-star"><use href="#i-star"/></svg><svg class="ic ic-star"><use href="#i-star"/></svg><svg class="ic ic-star"><use href="#i-star"/></svg></div>
+        <p>أفضل تجربة شراء عبر الإنترنت. الشاشة وصلت بسرعة وبحالة ممتازة، والدفع عند الاستلام أراحني كثيراً.</p>
+        <div class="testi-who">
+          <span class="avatar">يم</span>
+          <div><b>ياسين مرابط</b><span>قسنطينة</span></div>
+          <span class="verified"><svg class="ic"><use href="#i-check"/></svg> شراء موثق</span>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+<!-- DELIVERY -->
+<section class="section" id="delivery">
+  <div class="container">
+    <div class="section-head reveal">
+      <div class="sec-eyebrow">التوصيل</div>
+      <h2>نوصّل إلى كل ولايات الجزائر</h2>
+      <p>58 ولاية، خيارات توصيل للمنزل أو مكتب التوصيل، وأسعار واضحة بدون مفاجآت.</p>
+    </div>
+    <div class="delivery-panel reveal">
+      <div class="delivery-top">
+        <div class="delivery-badges">
+          <span class="d-badge"><svg class="ic"><use href="#i-truck"/></svg> 58 ولاية</span>
+          <span class="d-badge"><svg class="ic"><use href="#i-clock"/></svg> من 24 ساعة</span>
+          <span class="d-badge"><svg class="ic"><use href="#i-gift"/></svg> توصيل مجاني فوق 150.000 دج</span>
+        </div>
+        <div class="delivery-tools">
+          <div class="search-box">
+            <svg class="ic"><use href="#i-search"/></svg>
+            <input id="wilayaSearch" type="search" placeholder="ابحث عن ولايتك..." aria-label="البحث عن الولاية" autocomplete="off">
+          </div>
+          <span class="wilaya-count"><b id="wilayaCount">58</b> ولاية</span>
+        </div>
+      </div>
+      <div class="wilaya-grid" id="wilayaGrid" aria-live="polite"></div>
+      <div class="delivery-note">
+        <svg class="ic"><use href="#i-card"/></svg>
+        <div>الأسعار بالدينار الجزائري وتشمل التغليف. <b>التوصيل مجاني</b> للطلبات التي تتجاوز 150.000 دج. يتم تحديد موعد التوصيل هاتفياً قبل الشحن.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="section" id="faq" style="padding-top:0">
+  <div class="container">
+    <div class="section-head center reveal">
+      <div class="sec-eyebrow">الأسئلة الشائعة</div>
+      <h2>كل ما تحتاج معرفته</h2>
+      <p>أجوبة سريعة عن الطلب، الدفع، التوصيل والضمان.</p>
+    </div>
+    <div class="faq-wrap reveal">
+      <details class="faq-item" open>
+        <summary>كيف أطلب من PEDROO؟</summary>
+        <div class="faq-body">أضف المنتجات التي تريدها إلى السلة، ثم اضغط «إتمام الطلب» واملأ الاسم، اللقب، رقم الهاتف والولاية. سنتصل بك لتأكيد الطلب قبل الشحن.</div>
+      </details>
+      <details class="faq-item">
+        <summary>هل الدفع عند الاستلام متاح في كل الولايات؟</summary>
+        <div class="faq-body">نعم، الدفع عند الاستلام متاح في 58 ولاية. يمكنك أيضاً الدفع عبر التحويل البريدي أو البنكي قبل الشحن إذا كنت تفضل ذلك.</div>
+      </details>
+      <details class="faq-item">
+        <summary>كم يستغرق التوصيل؟</summary>
+        <div class="faq-body">من 24 إلى 48 ساعة في ولايات الوسط، ومن 48 إلى 72 ساعة في باقي ولايات الشمال والهضاب، ومن 72 إلى 96 ساعة في الجنوب. تظهر المدة الدقيقة لكل ولاية في قسم التوصيل أعلاه.</div>
+      </details>
+      <details class="faq-item">
+        <summary>هل المنتجات أصلية ومضمونة؟</summary>
+        <div class="faq-body">كل منتجاتنا أصلية 100% وتأتي مع فاتورة وضمان رسمي. مدة الضمان تختلف حسب المنتج وتُذكر في بطاقته وفي تأكيد الطلب.</div>
+      </details>
+      <details class="faq-item">
+        <summary>هل يمكنني تغيير أو إلغاء طلبي؟</summary>
+        <div class="faq-body">نعم، يمكنك تعديل أو إلغاء الطلب مجاناً خلال 24 ساعة من تأكيده، بشرط ألا يكون قد تم شحنه بعد. تواصل معنا عبر الهاتف أو واتساب.</div>
+      </details>
+      <details class="faq-item">
+        <summary>هل تقومون بتجميع الحواسيب وتركيب القطع؟</summary>
+        <div class="faq-body">نعم، نجمّع الحواسيب المخصصة ونختبرها قبل الشحن، ونقدم دعماً عن بعد لإعداد النظام والتعريفات. كما يمكنك طلب تجميع مخصص حسب ميزانيتك.</div>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="section" id="contact" style="padding-top:0">
+  <div class="container contact-grid">
+    <div class="reveal">
+      <div class="sec-eyebrow">تواصل معنا</div>
+      <h2 style="font-size:clamp(1.75rem,3.3vw,2.5rem);font-weight:800;margin-bottom:10px">نحن هنا لمساعدتك</h2>
+      <p style="color:var(--muted);font-size:.9rem;max-width:46ch">سؤال عن منتج، طلب تجميع مخصص أو متابعة طلبك؟ فريقنا يجيبك بسرعة — كل أيام الأسبوع.</p>
+      <div class="contact-cards">
+        <div class="contact-card">
+          <svg class="ic"><use href="#i-phone"/></svg>
+          <span>الهاتف / واتساب</span>
+          <b dir="ltr">0550 00 00 00</b>
+        </div>
+        <div class="contact-card">
+          <svg class="ic"><use href="#i-mail"/></svg>
+          <span>البريد الإلكتروني</span>
+          <b>contact@pedroo.dz</b>
+        </div>
+        <div class="contact-card ar">
+          <svg class="ic"><use href="#i-pin"/></svg>
+          <span>المتجر</span>
+          <b>الجزائر العاصمة، باب الزوار</b>
+        </div>
+        <div class="contact-card ar">
+          <svg class="ic"><use href="#i-clock"/></svg>
+          <span>أوقات العمل</span>
+          <b>السبت – الخميس · 9:00 – 19:00</b>
+        </div>
+      </div>
+      <div class="socials">
+        <a class="social-btn" href="https://wa.me/213550000000" target="_blank" rel="noopener" aria-label="واتساب"><svg class="ic"><use href="#i-whatsapp"/></svg></a>
+        <a class="social-btn" href="#" aria-label="فيسبوك"><svg class="ic"><use href="#i-facebook"/></svg></a>
+        <a class="social-btn" href="#" aria-label="إنستغرام"><svg class="ic"><use href="#i-instagram"/></svg></a>
+      </div>
+    </div>
+    <form class="contact-form reveal" id="contactForm" novalidate>
+      <h3>أرسل لنا رسالة</h3>
+      <p>سنعود إليك في أقرب وقت ممكن.</p>
+      <div class="form-row">
+        <div class="field">
+          <label for="cFirst">الاسم <span class="req">*</span></label>
+          <input class="input" id="cFirst" name="cFirst" type="text" placeholder="مثال: أحمد" autocomplete="given-name" required>
+        </div>
+        <div class="field">
+          <label for="cLast">اللقب <span class="req">*</span></label>
+          <input class="input" id="cLast" name="cLast" type="text" placeholder="مثال: بن علي" autocomplete="family-name" required>
+        </div>
+      </div>
+      <div class="field">
+        <label for="cPhone">رقم الهاتف <span class="req">*</span></label>
+        <input class="input" id="cPhone" name="cPhone" type="tel" inputmode="tel" placeholder="05XX XX XX XX" dir="ltr" autocomplete="tel" required>
+      </div>
+      <div class="field">
+        <label for="cMsg">رسالتك <span class="req">*</span></label>
+        <textarea id="cMsg" name="cMsg" placeholder="اكتب استفسارك هنا..." required></textarea>
+      </div>
+      <button class="btn btn-primary btn-block" type="submit">إرسال الرسالة <svg class="ic"><use href="#i-arrow"/></svg></button>
+    </form>
+  </div>
+</section>
+</main>
+
+<!-- FOOTER -->
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-about">
+        <a class="logo" href="#home" aria-label="PEDROO">
+          <span class="logo-mark"><svg viewBox="0 0 48 48" aria-hidden="true"><path d="M17 12h9.2c4.3 0 7.3 2.8 7.3 6.9 0 4.2-3 7-7.3 7H22v10h-5V12Zm5 4.4v5.2h3.9c1.7 0 2.7-1 2.7-2.6 0-1.6-1-2.6-2.7-2.6H22Z" fill="#05070e"/></svg></span>
+          <span><span class="logo-text">PEDROO</span><span class="logo-sub">TECH STORE · DZ</span></span>
+        </a>
+        <p>متجرك الجزائري للعتاد التقني: حواسيب ألعاب، مكونات أصلية وملحقات احترافية — بأسعار واضحة وخدمة حقيقية.</p>
+        <div class="socials">
+          <a class="social-btn" href="https://wa.me/213550000000" target="_blank" rel="noopener" aria-label="واتساب"><svg class="ic"><use href="#i-whatsapp"/></svg></a>
+          <a class="social-btn" href="#" aria-label="فيسبوك"><svg class="ic"><use href="#i-facebook"/></svg></a>
+          <a class="social-btn" href="#" aria-label="إنستغرام"><svg class="ic"><use href="#i-instagram"/></svg></a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>روابط سريعة</h4>
+        <a href="#home">الرئيسية</a>
+        <a href="#products">المنتجات</a>
+        <a href="#why">لماذا PEDROO</a>
+        <a href="#delivery">التوصيل</a>
+        <a href="#faq">الأسئلة الشائعة</a>
+      </div>
+      <div class="footer-col">
+        <h4>التصنيفات</h4>
+        <a href="#products">حواسيب جاهزة</a>
+        <a href="#products">مكونات</a>
+        <a href="#products">شاشات</a>
+        <a href="#products">ملحقات</a>
+        <a href="#products">لابتوبات</a>
+      </div>
+      <div class="footer-col footer-contact">
+        <h4>تواصل معنا</h4>
+        <div class="row"><svg class="ic"><use href="#i-phone"/></svg> <span dir="ltr">0550 00 00 00</span></div>
+        <div class="row"><svg class="ic"><use href="#i-mail"/></svg> contact@pedroo.dz</div>
+        <div class="row"><svg class="ic"><use href="#i-pin"/></svg> الجزائر العاصمة، باب الزوار</div>
+        <div class="row"><svg class="ic"><use href="#i-clock"/></svg> السبت – الخميس · 9:00–19:00</div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 PEDROO — جميع الحقوق محفوظة.</span>
+      <div class="pay">
+        <span class="pay-chip">الدفع عند الاستلام</span>
+        <span class="pay-chip">تحويل بريدي</span>
+        <span class="pay-chip">تحويل بنكي</span>
+      </div>
+      <span>صُنع بشغف في الجزائر 🇩🇿</span>
+    </div>
+  </div>
+</footer>
+
+<a class="float-wa" href="https://wa.me/213550000000?text=%D9%85%D8%B1%D8%AD%D8%A8%D8%A7%D9%8B%20PEDROO%D8%8C%20%D8%A3%D8%B1%D9%8A%D8%AF%20%D8%A7%D9%84%D8%A7%D8%B3%D8%AA%D9%81%D8%B3%D8%A7%D8%B1%20%D8%B9%D9%86%20%D9%85%D9%86%D8%AA%D8%AC%D8%A7%D8%AA%D9%83%D9%85." target="_blank" rel="noopener" aria-label="تواصل معنا عبر واتساب">
+  <svg class="ic"><use href="#i-whatsapp"/></svg><span>واتساب</span>
+</a>
+<button class="to-top" id="toTop" aria-label="العودة إلى الأعلى"><svg class="ic"><use href="#i-up"/></svg></button>
+<!-- CART DRAWER -->
+<div class="overlay" id="overlay"></div>
+<aside class="cart-drawer" id="cartDrawer" aria-hidden="true" aria-label="سلة التسوق">
+  <div class="cart-head">
+    <h3><svg class="ic"><use href="#i-cart"/></svg> سلتك <span class="cart-head-count" id="cartHeadCount">(0)</span></h3>
+    <button class="drawer-close" id="closeCart" aria-label="إغلاق السلة"><svg class="ic"><use href="#i-close"/></svg></button>
+  </div>
+  <div class="cart-body" id="cartItems"></div>
+  <div class="cart-foot">
+    <div class="ship-progress">
+      <p><span id="shipMsg">أضف منتجات لتحصل على توصيل مجاني</span><b id="shipPct">0%</b></p>
+      <div class="progress"><span id="shipBar"></span></div>
+    </div>
+    <div class="cart-total"><span>المجموع الفرعي</span><b id="cartSubtotal">0 دج</b></div>
+    <button class="btn btn-primary btn-block" id="checkoutBtn" type="button">إتمام الطلب <svg class="ic"><use href="#i-arrow"/></svg></button>
+    <div class="cart-note"><svg class="ic"><use href="#i-shield"/></svg> دفع عند الاستلام · ضمان رسمي · توصيل 58 ولاية</div>
+  </div>
+</aside>
+
+<!-- CHECKOUT MODAL -->
+<div class="modal" id="checkoutModal" aria-hidden="true">
+  <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="checkoutTitle">
+    <button class="modal-close" id="closeCheckout" aria-label="إغلاق نافذة الطلب"><svg class="ic"><use href="#i-close"/></svg></button>
+    <div class="checkout-view" id="checkoutView">
+      <h3 id="checkoutTitle">إتمام الطلب</h3>
+      <p>املأ معلوماتك وسنتواصل معك هاتفياً لتأكيد الطلب قبل الشحن.</p>
+      <div class="checkout-grid">
+        <form class="checkout-form" id="orderForm" novalidate>
+          <h4><svg class="ic"><use href="#i-pin"/></svg> معلومات التوصيل</h4>
+          <div class="form-row">
+            <div class="field">
+              <label for="firstName">الاسم <span class="req">*</span></label>
+              <input class="input" id="firstName" name="firstName" type="text" placeholder="مثال: أحمد" autocomplete="given-name" required>
+              <small class="err"></small>
+            </div>
+            <div class="field">
+              <label for="lastName">اللقب <span class="req">*</span></label>
+              <input class="input" id="lastName" name="lastName" type="text" placeholder="مثال: بن علي" autocomplete="family-name" required>
+              <small class="err"></small>
+            </div>
+          </div>
+          <div class="field">
+            <label for="orderPhone">رقم الهاتف <span class="req">*</span></label>
+            <input class="input" id="orderPhone" name="phone" type="tel" inputmode="tel" placeholder="05XX XX XX XX" dir="ltr" autocomplete="tel" required>
+            <small class="err"></small>
+          </div>
+          <div class="field">
+            <label for="orderWilaya">الولاية <span class="req">*</span></label>
+            <select id="orderWilaya" name="wilaya" required>
+              <option value="">اختر ولايتك...</option>
+            </select>
+            <small class="err"></small>
+          </div>
+          <div class="field">
+            <label for="orderAddress">البلدية / العنوان الكامل <span class="req">*</span></label>
+            <input class="input" id="orderAddress" name="address" type="text" placeholder="مثال: باب الزوار، حي 5 جويلية، عمارة 12" autocomplete="street-address" required>
+            <small class="err"></small>
+          </div>
+          <div class="field">
+            <label>طريقة التوصيل</label>
+            <div class="delivery-options">
+              <label class="radio-card">
+                <input type="radio" name="deliveryType" value="home" checked>
+                <span class="rc-ui"><svg class="ic"><use href="#i-truck"/></svg><span><b>توصيل للمنزل</b>حتى باب منزلك</span></span>
+              </label>
+              <label class="radio-card">
+                <input type="radio" name="deliveryType" value="desk">
+                <span class="rc-ui"><svg class="ic"><use href="#i-pin"/></svg><span><b>مكتب التوصيل</b>أقرب نقطة لك</span></span>
+              </label>
+            </div>
+          </div>
+          <div class="field">
+            <label for="orderNotes">ملاحظات (اختياري)</label>
+            <textarea id="orderNotes" name="notes" placeholder="أي تفاصيل إضافية تساعدنا في طلبك..."></textarea>
+          </div>
+          <button class="btn btn-primary btn-block" type="submit" id="submitOrder">تأكيد الطلب <svg class="ic"><use href="#i-check"/></svg></button>
+        </form>
+        <aside class="order-summary">
+          <h4><svg class="ic"><use href="#i-cart"/></svg> ملخص الطلب</h4>
+          <div class="sum-items" id="sumItems"></div>
+          <div class="sum-line"><span>المجموع الفرعي</span><b id="sumSubtotal">0 دج</b></div>
+          <div class="sum-line"><span>التوصيل</span><b id="sumShipping">اختر الولاية</b></div>
+          <div class="sum-total"><span>الإجمالي</span><b id="sumTotal">0 دج</b></div>
+          <div class="cod-badge"><svg class="ic"><use href="#i-card"/></svg> الدفع نقداً عند الاستلام — افحص طلبك قبل الدفع</div>
+        </aside>
+      </div>
+    </div>
+    <div class="success-view" id="successView" hidden></div>
+  </div>
+</div>
+
+<!-- MOBILE NAV -->
+<div class="mobile-nav" id="mobileNav" aria-hidden="true">
+  <div class="mobile-nav-head">
+    <a class="logo" href="#home">
+      <span class="logo-mark"><svg viewBox="0 0 48 48" aria-hidden="true"><path d="M17 12h9.2c4.3 0 7.3 2.8 7.3 6.9 0 4.2-3 7-7.3 7H22v10h-5V12Zm5 4.4v5.2h3.9c1.7 0 2.7-1 2.7-2.6 0-1.6-1-2.6-2.7-2.6H22Z" fill="#05070e"/></svg></span>
+      <span><span class="logo-text">PEDROO</span><span class="logo-sub">TECH STORE · DZ</span></span>
+    </a>
+    <button class="drawer-close" id="closeMenu" aria-label="إغلاق القائمة"><svg class="ic"><use href="#i-close"/></svg></button>
+  </div>
+  <nav aria-label="قائمة الهاتف">
+    <a href="#home">الرئيسية <svg class="ic"><use href="#i-arrow"/></svg></a>
+    <a href="#products">المنتجات <svg class="ic"><use href="#i-arrow"/></svg></a>
+    <a href="#builder">تجميع مخصص <svg class="ic"><use href="#i-arrow"/></svg></a>
+    <a href="#delivery">التوصيل <svg class="ic"><use href="#i-arrow"/></svg></a>
+    <a href="#faq">الأسئلة الشائعة <svg class="ic"><use href="#i-arrow"/></svg></a>
+    <a href="#contact">تواصل معنا <svg class="ic"><use href="#i-arrow"/></svg></a>
+  </nav>
+  <div class="mobile-nav-foot">
+    <a href="#products" class="btn btn-primary btn-block">تسوّق الآن <svg class="ic"><use href="#i-arrow"/></svg></a>
+    <div class="socials">
+      <a class="social-btn" href="https://wa.me/213550000000" target="_blank" rel="noopener" aria-label="واتساب"><svg class="ic"><use href="#i-whatsapp"/></svg></a>
+      <a class="social-btn" href="#" aria-label="فيسبوك"><svg class="ic"><use href="#i-facebook"/></svg></a>
+      <a class="social-btn" href="#" aria-label="إنستغرام"><svg class="ic"><use href="#i-instagram"/></svg></a>
+    </div>
+  </div>
+</div>
+
+<div class="toast-wrap" id="toastWrap" aria-live="polite"></div>
+<script>
+'use strict';
+
+/* =========================================================
+   PEDROO — إعدادات المتجر
+   لتغيير رقم الهاتف أو واتساب، عدّل القيم التالية.
+   ========================================================= */
+const STORE = {
+  phone: '0550 00 00 00',
+  whatsapp: '213550000000',
+  email: 'contact@pedroo.dz',
+  freeShipping: 150000
+};
+
+const ZONES = {
+  1: { home: 400,  desk: 250, days: '24–48 ساعة' },
+  2: { home: 550,  desk: 300, days: '48–72 ساعة' },
+  3: { home: 700,  desk: 400, days: '72–96 ساعة' },
+  4: { home: 900,  desk: 500, days: '72–96 ساعة' },
+  5: { home: 1200, desk: 650, days: '3–5 أيام' }
+};
+
+/* الولايات الـ58 — z = منطقة التوصيل */
+const WILAYAS = [
+  { c:1,  n:'أدرار', z:4 },          { c:2,  n:'الشلف', z:2 },
+  { c:3,  n:'الأغواط', z:3 },        { c:4,  n:'أم البواقي', z:2 },
+  { c:5,  n:'باتنة', z:2 },          { c:6,  n:'بجاية', z:2 },
+  { c:7,  n:'بسكرة', z:3 },          { c:8,  n:'بشار', z:4 },
+  { c:9,  n:'البليدة', z:1 },        { c:10, n:'البويرة', z:2 },
+  { c:11, n:'تمنراست', z:5 },        { c:12, n:'تبسة', z:3 },
+  { c:13, n:'تلمسان', z:2 },         { c:14, n:'تيارت', z:2 },
+  { c:15, n:'تيزي وزو', z:2 },       { c:16, n:'الجزائر', z:1 },
+  { c:17, n:'الجلفة', z:3 },         { c:18, n:'جيجل', z:2 },
+  { c:19, n:'سطيف', z:2 },           { c:20, n:'سعيدة', z:2 },
+  { c:21, n:'سكيكدة', z:2 },         { c:22, n:'سيدي بلعباس', z:2 },
+  { c:23, n:'عنابة', z:2 },          { c:24, n:'قالمة', z:2 },
+  { c:25, n:'قسنطينة', z:2 },        { c:26, n:'المدية', z:2 },
+  { c:27, n:'مستغانم', z:2 },        { c:28, n:'المسيلة', z:3 },
+  { c:29, n:'معسكر', z:2 },          { c:30, n:'ورقلة', z:4 },
+  { c:31, n:'وهران', z:2 },          { c:32, n:'البيض', z:3 },
+  { c:33, n:'إليزي', z:5 },          { c:34, n:'برج بوعريريج', z:2 },
+  { c:35, n:'بومرداس', z:1 },        { c:36, n:'الطارف', z:2 },
+  { c:37, n:'تندوف', z:5 },          { c:38, n:'تيسمسيلت', z:2 },
+  { c:39, n:'الوادي', z:3 },         { c:40, n:'خنشلة', z:2 },
+  { c:41, n:'سوق أهراس', z:2 },      { c:42, n:'تيبازة', z:1 },
+  { c:43, n:'ميلة', z:2 },           { c:44, n:'عين الدفلى', z:2 },
+  { c:45, n:'النعامة', z:3 },        { c:46, n:'عين تموشنت', z:2 },
+  { c:47, n:'غرداية', z:3 },         { c:48, n:'غليزان', z:2 },
+  { c:49, n:'تيميمون', z:4 },        { c:50, n:'برج باجي مختار', z:5 },
+  { c:51, n:'أولاد جلال', z:4 },     { c:52, n:'بني عباس', z:4 },
+  { c:53, n:'عين صالح', z:4 },       { c:54, n:'عين قزام', z:5 },
+  { c:55, n:'تقرت', z:4 },           { c:56, n:'جانت', z:5 },
+  { c:57, n:'المغير', z:4 },         { c:58, n:'المنيعة', z:4 }
+];
+
+/* المنتجات */
+const PRODUCTS = [
+  { id:'titan', name:'PEDROO TITAN X', cat:'pc', catLabel:'حاسوب جاهز', price:329900, old:359900,
+    img:'assets/pc-titan.jpg', badge:'الأكثر مبيعاً', badgeTone:'gold', rating:4.9, reviews:127,
+    specs:['i7-14700F','RTX 4070 SUPER','32GB DDR5'],
+    desc:'وحش ألعاب بمعالج Intel Core i7 وكرت RTX 4070 SUPER لأداء 4K سلس.' },
+  { id:'nova', name:'PEDROO NOVA', cat:'pc', catLabel:'حاسوب جاهز', price:219900, old:239900,
+    img:'assets/pc-nova.jpg', badge:'تخفيض', badgeTone:'sale', rating:4.8, reviews:94,
+    specs:['Ryzen 5 7600','RTX 4060','16GB DDR5'],
+    desc:'توليفة متوازنة للألعاب والستريمينغ بمعالج Ryzen 5 وكرت RTX 4060.' },
+  { id:'vision27', name:'PEDROO VISION 27', cat:'monitor', catLabel:'شاشة', price:52900, old:59900,
+    img:'assets/monitor.jpg', badge:'جديد', badgeTone:'new', rating:4.9, reviews:61,
+    specs:['27" QHD','165Hz','1ms IPS'],
+    desc:'شاشة QHD 27 بوصة بمعدل تحديث 165Hz وألوان IPS دقيقة للاعبين والمبدعين.' },
+  { id:'rtx4070', name:'NVIDIA RTX 4070 SUPER', cat:'components', catLabel:'مكونات', price:134900, old:null,
+    img:'assets/gpu.jpg', badge:'ضمان 3 سنوات', badgeTone:'', rating:4.9, reviews:38,
+    specs:['12GB GDDR6X','DLSS 3','Ray Tracing'],
+    desc:'كرت شاشة 12GB GDDR6X مع Ray Tracing وDLSS 3 لأداء عالٍ في 1440p.' },
+  { id:'ryzen7', name:'AMD Ryzen 7 7800X3D', cat:'components', catLabel:'مكونات', price:79900, old:null,
+    img:'assets/cpu-ryzen.jpg', badge:'اختيار اللاعبين', badgeTone:'gold', rating:5.0, reviews:45,
+    specs:['8 أنوية','5.0GHz','AM5'],
+    desc:'أفضل معالج ألعاب بذاكرة 3D V-Cache وسرعة تصل إلى 5.0GHz.' },
+  { id:'b650', name:'ASUS ROG STRIX B650-A', cat:'components', catLabel:'مكونات', price:39900, old:null,
+    img:'assets/motherboard.jpg', badge:null, badgeTone:'', rating:4.7, reviews:22,
+    specs:['AM5','DDR5','PCIe 5.0'],
+    desc:'لوحة أم ATX تدعم DDR5 وPCIe 5.0 مع تبريد VRM قوي وتصميم أنيق.' },
+  { id:'k87', name:'PEDROO K87 Mechanical', cat:'accessories', catLabel:'ملحقات', price:14900, old:17900,
+    img:'assets/keyboard.jpg', badge:'تخفيض', badgeTone:'sale', rating:4.8, reviews:112,
+    specs:['Hot-Swap','RGB','USB-C'],
+    desc:'لوحة مفاتيح ميكانيكية 87 مفتاحاً بلمسات حمراء وإضاءة RGB قابلة للبرمجة.' },
+  { id:'glide', name:'PEDROO GLIDE PRO', cat:'accessories', catLabel:'ملحقات', price:11900, old:null,
+    img:'assets/mouse.jpg', badge:null, badgeTone:'', rating:4.8, reviews:89,
+    specs:['26K DPI','68g','لاسلكي'],
+    desc:'ماوس لاسلكي خفيف 68غ بدقة 26K DPI واستجابة 1ms لجلسات طويلة.' },
+  { id:'sound', name:'PEDROO SOUND 7.1', cat:'accessories', catLabel:'ملحقات', price:18900, old:22900,
+    img:'assets/headset.jpg', badge:'تخفيض', badgeTone:'sale', rating:4.7, reviews:76,
+    specs:['7.1 Surround','Mic','RGB'],
+    desc:'سماعات محيطية 7.1 مع ميكروفون عازل للضوضاء وراحة لساعات طويلة.' },
+  { id:'air14', name:'PEDROO AIR 14', cat:'laptop', catLabel:'لابتوب', price:189900, old:209900,
+    img:'assets/laptop.jpg', badge:'جديد', badgeTone:'new', rating:4.8, reviews:33,
+    specs:['i7-1360P','16GB RAM','512GB SSD'],
+    desc:'لابتوب خفيف بشاشة 2.8K ومعالج i7 للعمل والإبداع أثناء التنقل.' }
+];
+
+/* =========================================================
+   أدوات مساعدة
+   ========================================================= */
+const $ = (s, el = document) => el.querySelector(s);
+const $$ = (s, el = document) => Array.from(el.querySelectorAll(s));
+const fmt = n => Number(n).toLocaleString('en-US').replace(/,/g, '.');
+const pad = n => String(n).padStart(2, '0');
+const STAR = '<svg class="ic ic-star"><use href="#i-star"/></svg>';
+
+function load(key, fallback) {
+  try { const v = JSON.parse(localStorage.getItem(key)); return v ?? fallback; }
+  catch (e) { return fallback; }
+}
+function save(key, value) {
+  try { localStorage.setItem(key, JSON.stringify(value)); } catch (e) {}
+}
+
+let cart = load('pedroo_cart', []);
+let wishlist = new Set(load('pedroo_wish', []));
+const state = { filter: 'all', query: '', wilaya: '', deliveryType: 'home' };
+
+const productsGrid = $('#productsGrid');
+const productCount = $('#productCount');
+const cartDrawer = $('#cartDrawer');
+const cartItems = $('#cartItems');
+const cartCount = $('#cartCount');
+const cartHeadCount = $('#cartHeadCount');
+const cartSubtotal = $('#cartSubtotal');
+const overlay = $('#overlay');
+const checkoutBtn = $('#checkoutBtn');
+
+/* =========================================================
+   المنتجات
+   ========================================================= */
+function productCard(p) {
+  const active = wishlist.has(p.id);
+  return `
+  <article class="product-card" data-cat="${p.cat}">
+    <div class="p-media">
+      ${p.badge ? `<span class="p-badge ${p.badgeTone}">${p.badge}</span>` : ''}
+      <button class="wish ${active ? 'active' : ''}" data-wish="${p.id}" aria-label="أضف ${p.name} إلى المفضلة" aria-pressed="${active}">
+        <svg class="ic"><use href="#i-heart"/></svg>
+      </button>
+      <img src="${p.img}" alt="${p.name}" decoding="async" onerror="this.remove()">
+    </div>
+    <div class="p-body">
+      <span class="p-cat">${p.catLabel}</span>
+      <h3>${p.name}</h3>
+      <p class="p-desc">${p.desc}</p>
+      <div class="p-specs">${p.specs.map(s => `<span>${s}</span>`).join('')}</div>
+      <div class="p-rating">
+        <span class="stars" aria-hidden="true">${STAR.repeat(5)}</span>
+        <b>${p.rating.toFixed(1)}</b><span>(${p.reviews})</span>
+      </div>
+      <div class="p-foot">
+        <div class="p-price">
+          <strong>${fmt(p.price)} <small>دج</small></strong>
+          ${p.old ? `<s>${fmt(p.old)} دج</s>` : ''}
+        </div>
+        <button class="add-btn" data-add="${p.id}" aria-label="أضف ${p.name} إلى السلة">
+          <svg class="ic"><use href="#i-plus"/></svg>
+        </button>
+      </div>
+    </div>
+  </article>`;
+}
+
+function renderProducts() {
+  const q = state.query.trim().toLowerCase();
+  const list = PRODUCTS.filter(p => {
+    const inCat = state.filter === 'all' || p.cat === state.filter;
+    const hay = (p.name + ' ' + p.desc + ' ' + p.catLabel + ' ' + p.specs.join(' ')).toLowerCase();
+    return inCat && (!q || hay.includes(q));
+  });
+
+  if (!list.length) {
+    productsGrid.innerHTML = `<div class="empty-state">
+      <b style="color:#dce8f8;display:block;margin-bottom:4px">لا توجد نتائج مطابقة</b>
+      جرّب كلمة بحث أخرى أو اختر تصنيفاً مختلفاً.
+    </div>`;
+  } else {
+    productsGrid.innerHTML = list.map(productCard).join('');
+    Array.from(productsGrid.children).forEach((el, i) => {
+      el.style.animationDelay = (i * 0.035) + 's';
+    });
+  }
+  productCount.textContent = list.length + (list.length === 1 ? ' منتج' : ' منتجات');
+}
+
+/* =========================================================
+   السلة
+   ========================================================= */
+function cartSubtotalValue() {
+  return cart.reduce((sum, item) => {
+    const p = PRODUCTS.find(x => x.id === item.id);
+    return sum + (p ? p.price * item.qty : 0);
+  }, 0);
+}
+
+function saveCart() {
+  cart = cart.filter(item => PRODUCTS.some(p => p.id === item.id));
+  save('pedroo_cart', cart);
+}
+
+function updateCartCount() {
+  const count = cart.reduce((n, item) => n + item.qty, 0);
+  cartCount.textContent = count;
+  cartCount.hidden = count === 0;
+  cartHeadCount.textContent = `(${count})`;
+}
+
+function renderCart() {
+  if (!cart.length) {
+    cartItems.innerHTML = `<div class="cart-empty">
+      <span class="empty-ic"><svg class="ic"><use href="#i-cart"/></svg></span>
+      <h4>سلتك فارغة</h4>
+      <p>اكتشف منتجاتنا وابدأ بتجهيز إعدادك.</p>
+      <button class="btn btn-primary" data-shop type="button">تسوّق المنتجات</button>
+    </div>`;
+    cartSubtotal.textContent = '0 دج';
+    $('#shipMsg').textContent = 'أضف منتجات لتحصل على توصيل مجاني';
+    $('#shipPct').textContent = '0%';
+    $('#shipBar').style.width = '0%';
+    checkoutBtn.disabled = true;
+    updateCartCount();
+    return;
+  }
+
+  cartItems.innerHTML = cart.map(item => {
+    const p = PRODUCTS.find(x => x.id === item.id);
+    if (!p) return '';
+    return `<div class="cart-item" data-id="${p.id}">
+      <img src="${p.img}" alt="${p.name}">
+      <div class="ci-info">
+        <h4>${p.name}</h4>
+        <span class="ci-price">${fmt(p.price)} دج</span>
+        <div class="qty">
+          <button data-act="dec" aria-label="تقليل الكمية"><svg class="ic"><use href="#i-minus"/></svg></button>
+          <span>${item.qty}</span>
+          <button data-act="inc" aria-label="زيادة الكمية"><svg class="ic"><use href="#i-plus"/></svg></button>
+        </div>
+      </div>
+      <div class="ci-side">
+        <b>${fmt(p.price * item.qty)} دج</b>
+        <button class="ci-remove" data-act="remove" aria-label="حذف ${p.name}"><svg class="ic"><use href="#i-trash"/></svg></button>
+      </div>
+    </div>`;
+  }).join('');
+
+  const sub = cartSubtotalValue();
+  cartSubtotal.textContent = fmt(sub) + ' دج';
+  checkoutBtn.disabled = false;
+
+  const pct = Math.min(100, Math.round((sub / STORE.freeShipping) * 100));
+  $('#shipPct').textContent = pct + '%';
+  $('#shipBar').style.width = pct + '%';
+  $('#shipMsg').textContent = sub >= STORE.freeShipping
+    ? 'تأهلت للتوصيل المجاني ✓'
+    : 'أضف ' + fmt(STORE.freeShipping - sub) + ' دج للتوصيل المجاني';
+
+  updateCartCount();
+}
+
+function addToCart(id) {
+  const p = PRODUCTS.find(x => x.id === id);
+  if (!p) return;
+  const item = cart.find(x => x.id === id);
+  if (item) item.qty += 1;
+  else cart.push({ id, qty: 1 });
+  saveCart();
+  renderCart();
+  toast('تمت إضافة ' + p.name + ' إلى السلة');
+}
+
+function changeQty(id, delta) {
+  const item = cart.find(x => x.id === id);
+  if (!item) return;
+  item.qty += delta;
+  if (item.qty <= 0) cart = cart.filter(x => x.id !== id);
+  saveCart();
+  renderCart();
+}
+
+cartItems.addEventListener('click', e => {
+  const shop = e.target.closest('[data-shop]');
+  if (shop) {
+    closeCart();
+    document.getElementById('products').scrollIntoView({ behavior: 'smooth' });
+    return;
+  }
+  const btn = e.target.closest('[data-act]');
+  if (!btn) return;
+  const itemEl = btn.closest('.cart-item');
+  if (!itemEl) return;
+  const id = itemEl.dataset.id;
+  if (btn.dataset.act === 'inc') changeQty(id, 1);
+  if (btn.dataset.act === 'dec') changeQty(id, -1);
+  if (btn.dataset.act === 'remove') {
+    cart = cart.filter(x => x.id !== id);
+    saveCart();
+    renderCart();
+    toast('تم حذف المنتج من السلة');
+  }
+});
+
+productsGrid.addEventListener('click', e => {
+  const add = e.target.closest('[data-add]');
+  if (add) { addToCart(add.dataset.add); return; }
+  const wish = e.target.closest('[data-wish]');
+  if (wish) {
+    const id = wish.dataset.wish;
+    if (wishlist.has(id)) {
+      wishlist.delete(id);
+      toast('تمت الإزالة من المفضلة');
+    } else {
+      wishlist.add(id);
+      toast('تمت الإضافة إلى المفضلة');
+    }
+    save('pedroo_wish', Array.from(wishlist));
+    wish.classList.toggle('active', wishlist.has(id));
+    wish.setAttribute('aria-pressed', wishlist.has(id));
+  }
+});
+/* =========================================================
+   فتح / إغلاق السلة والنوافذ
+   ========================================================= */
+function syncLock() {
+  const anyOpen = cartDrawer.classList.contains('open') ||
+    $('#checkoutModal').classList.contains('open') ||
+    $('#mobileNav').classList.contains('open');
+  document.body.classList.toggle('locked', anyOpen);
+}
+
+function openCart() {
+  cartDrawer.classList.add('open');
+  cartDrawer.setAttribute('aria-hidden', 'false');
+  overlay.classList.add('open');
+  $('#cartBtn').setAttribute('aria-expanded', 'true');
+  syncLock();
+}
+
+function closeCart() {
+  cartDrawer.classList.remove('open');
+  cartDrawer.setAttribute('aria-hidden', 'true');
+  overlay.classList.remove('open');
+  $('#cartBtn').setAttribute('aria-expanded', 'false');
+  syncLock();
+}
+
+$('#cartBtn').addEventListener('click', openCart);
+$('#closeCart').addEventListener('click', closeCart);
+overlay.addEventListener('click', closeCart);
+
+/* =========================================================
+   التوصيل — الولايات الـ58
+   ========================================================= */
+function wilayaCard(w) {
+  const z = ZONES[w.z];
+  return `<div class="w-card">
+    <div class="w-head">
+      <span class="w-code">${pad(w.c)}</span>
+      <span class="w-name">${w.n}</span>
+      <span class="w-zone">منطقة ${w.z}</span>
+    </div>
+    <div class="w-rows">
+      <div class="w-row"><span>توصيل للمنزل</span><b>${fmt(z.home)} دج</b></div>
+      <div class="w-row"><span>مكتب التوصيل</span><b>${fmt(z.desk)} دج</b></div>
+    </div>
+    <div class="w-time"><svg class="ic"><use href="#i-clock"/></svg> ${z.days}</div>
+  </div>`;
+}
+
+function renderWilayas() {
+  const q = $('#wilayaSearch').value.trim().toLowerCase();
+  const list = WILAYAS.filter(w => !q || w.n.toLowerCase().includes(q) || String(w.c).includes(q));
+  $('#wilayaGrid').innerHTML = list.length
+    ? list.map(wilayaCard).join('')
+    : '<div class="empty-state" style="grid-column:1/-1">لا توجد ولاية مطابقة. جرّب كتابة الاسم أو رقم الولاية.</div>';
+  $('#wilayaCount').textContent = list.length;
+}
+
+$('#wilayaSearch').addEventListener('input', renderWilayas);
+
+/* تعبئة قائمة الولايات في نموذج الطلب */
+const wilayaSelect = $('#orderWilaya');
+WILAYAS.forEach(w => {
+  const opt = document.createElement('option');
+  opt.value = w.c;
+  opt.textContent = pad(w.c) + ' — ' + w.n;
+  wilayaSelect.appendChild(opt);
+});
+
+/* =========================================================
+   ملخص الطلب والتوصيل
+   ========================================================= */
+function selectedZone() {
+  const w = WILAYAS.find(x => String(x.c) === String(state.wilaya));
+  return w ? ZONES[w.z] : null;
+}
+
+function shippingCost() {
+  if (!state.wilaya) return null;
+  if (cartSubtotalValue() >= STORE.freeShipping) return 0;
+  const z = selectedZone();
+  if (!z) return null;
+  return state.deliveryType === 'desk' ? z.desk : z.home;
+}
+
+function renderSummary() {
+  const sub = cartSubtotalValue();
+  $('#sumItems').innerHTML = cart.length
+    ? cart.map(item => {
+        const p = PRODUCTS.find(x => x.id === item.id);
+        return p ? `<div class="sum-item"><span>${p.name} × ${item.qty}</span><b>${fmt(p.price * item.qty)} دج</b></div>` : '';
+      }).join('')
+    : '<div class="sum-item"><span>لا توجد منتجات في السلة</span></div>';
+
+  $('#sumSubtotal').textContent = fmt(sub) + ' دج';
+  const ship = shippingCost();
+  $('#sumShipping').innerHTML = ship === null
+    ? 'اختر الولاية'
+    : (ship === 0 ? '<span class="free">مجاني</span>' : fmt(ship) + ' دج');
+  $('#sumTotal').textContent = fmt(sub + (ship || 0)) + ' دج';
+}
+
+function openCheckout() {
+  if (!cart.length) {
+    toast('سلتك فارغة — أضف منتجاً أولاً');
+    return;
+  }
+  closeCart();
+  const form = $('#orderForm');
+  form.reset();
+  state.wilaya = '';
+  state.deliveryType = 'home';
+  wilayaSelect.value = '';
+  $$('.field', form).forEach(f => {
+    f.classList.remove('invalid');
+    const err = f.querySelector('.err');
+    if (err) err.textContent = '';
+  });
+  renderSummary();
+
+  $('#checkoutView').hidden = false;
+  $('#successView').hidden = true;
+  const modal = $('#checkoutModal');
+  modal.classList.add('open');
+  modal.setAttribute('aria-hidden', 'false');
+  syncLock();
+  setTimeout(() => $('#firstName').focus(), 140);
+}
+
+function closeCheckout() {
+  const modal = $('#checkoutModal');
+  modal.classList.remove('open');
+  modal.setAttribute('aria-hidden', 'true');
+  setTimeout(() => {
+    $('#checkoutView').hidden = false;
+    $('#successView').hidden = true;
+  }, 250);
+  syncLock();
+}
+
+checkoutBtn.addEventListener('click', openCheckout);
+$('#closeCheckout').addEventListener('click', closeCheckout);
+$('#checkoutModal').addEventListener('click', e => {
+  if (e.target === $('#checkoutModal')) closeCheckout();
+});
+
+wilayaSelect.addEventListener('change', () => {
+  state.wilaya = wilayaSelect.value;
+  if (state.wilaya) wilayaSelect.closest('.field').classList.remove('invalid');
+  renderSummary();
+});
+
+$$('input[name="deliveryType"]').forEach(radio => {
+  radio.addEventListener('change', () => {
+    state.deliveryType = radio.value;
+    renderSummary();
+  });
+});
+
+/* =========================================================
+   التحقق وإرسال الطلب
+   ========================================================= */
+const escapeHtml = s => String(s).replace(/[&<>"']/g, c => ({
+  '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'
+}[c]));
+
+function setInvalid(input, message) {
+  const field = input.closest('.field');
+  if (!field) return;
+  field.classList.add('invalid');
+  const err = field.querySelector('.err');
+  if (err) err.textContent = message;
+}
+
+$('#orderForm').addEventListener('input', e => {
+  const field = e.target.closest('.field');
+  if (field) field.classList.remove('invalid');
+});
+
+function buildWhatsAppLink(order) {
+  const lines = [
+    'مرحباً PEDROO 👋',
+    'أريد تأكيد هذا الطلب:',
+    'رقم الطلب: ' + order.id,
+    'الاسم واللقب: ' + order.firstName + ' ' + order.lastName,
+    'الهاتف: ' + order.phone,
+    'الولاية: ' + order.wilayaName,
+    'العنوان: ' + order.address,
+    'التوصيل: ' + (order.type === 'desk' ? 'مكتب التوصيل' : 'توصيل للمنزل'),
+    '',
+    'المنتجات:'
+  ];
+  order.items.forEach(i => lines.push('• ' + i.name + ' × ' + i.qty + ' — ' + fmt(i.price * i.qty) + ' دج'));
+  lines.push('', 'الإجمالي: ' + fmt(order.total) + ' دج');
+  if (order.notes) lines.push('ملاحظات: ' + order.notes);
+  return 'https://wa.me/' + STORE.whatsapp + '?text=' + encodeURIComponent(lines.join('\n'));
+}
+
+function renderSuccess(order) {
+  const waLink = buildWhatsAppLink(order);
+  $('#successView').innerHTML = `
+    <div class="success-ic"><svg class="ic"><use href="#i-check"/></svg></div>
+    <h3>تم استلام طلبك بنجاح</h3>
+    <p>شكراً ${escapeHtml(order.firstName)}! سنتواصل معك على الرقم <b dir="ltr">${escapeHtml(order.phone)}</b> لتأكيد الطلب قبل الشحن.</p>
+    <div class="success-meta">
+      <div class="sm-row"><span>رقم الطلب</span><b class="mono">${order.id}</b></div>
+      <div class="sm-row"><span>الاسم واللقب</span><b>${escapeHtml(order.firstName + ' ' + order.lastName)}</b></div>
+      <div class="sm-row"><span>الهاتف</span><b dir="ltr">${escapeHtml(order.phone)}</b></div>
+      <div class="sm-row"><span>الولاية</span><b>${order.wilayaName}</b></div>
+      <div class="sm-row"><span>طريقة التوصيل</span><b>${order.type === 'desk' ? 'مكتب التوصيل' : 'توصيل للمنزل'}</b></div>
+      <div class="sm-row"><span>مدة التوصيل</span><b>${order.days}</b></div>
+      <div class="sm-row"><span>الإجمالي</span><b class="mono">${fmt(order.total)} دج</b></div>
+    </div>
+    <div class="success-actions">
+      <a class="btn btn-primary" href="${waLink}" target="_blank" rel="noopener">
+        <svg class="ic" style="fill:currentColor;stroke:none"><use href="#i-whatsapp"/></svg> تأكيد عبر واتساب
+      </a>
+      <button class="btn btn-ghost" type="button" data-continue>متابعة التسوق</button>
+    </div>`;
+  $('#checkoutView').hidden = true;
+  $('#successView').hidden = false;
+  $('#successView').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+
+  const cont = $('#successView [data-continue]');
+  if (cont) {
+    cont.addEventListener('click', () => {
+      closeCheckout();
+      document.getElementById('products').scrollIntoView({ behavior: 'smooth' });
+    });
+  }
+}
+
+$('#orderForm').addEventListener('submit', e => {
+  e.preventDefault();
+  const form = e.currentTarget;
+  $$('.field', form).forEach(f => {
+    f.classList.remove('invalid');
+    const err = f.querySelector('.err');
+    if (err) err.textContent = '';
+  });
+
+  const firstName = $('#firstName').value.trim();
+  const lastName = $('#lastName').value.trim();
+  const phone = $('#orderPhone').value.trim().replace(/[\s\-\.]/g, '');
+  const address = $('#orderAddress').value.trim();
+  const notes = $('#orderNotes').value.trim();
+  let valid = true;
+
+  if (firstName.length < 2) { setInvalid($('#firstName'), 'يرجى إدخال الاسم (حرفان على الأقل)'); valid = false; }
+  if (lastName.length < 2) { setInvalid($('#lastName'), 'يرجى إدخال اللقب (حرفان على الأقل)'); valid = false; }
+  if (!/^0[5-7]\d{8}$/.test(phone)) { setInvalid($('#orderPhone'), 'رقم هاتف جزائري غير صحيح (مثال: 0550123456)'); valid = false; }
+  if (!state.wilaya) { setInvalid(wilayaSelect, 'يرجى اختيار الولاية'); valid = false; }
+  if (address.length < 5) { setInvalid($('#orderAddress'), 'يرجى إدخال البلدية والعنوان الكامل'); valid = false; }
+
+  if (!valid) {
+    const firstBad = form.querySelector('.field.invalid .input, .field.invalid select');
+    if (firstBad) firstBad.focus();
+    return;
+  }
+
+  const wilayaObj = WILAYAS.find(w => String(w.c) === String(state.wilaya));
+  const sub = cartSubtotalValue();
+  const ship = shippingCost() || 0;
+  const order = {
+    id: 'PD-' + Math.floor(100000 + Math.random() * 900000),
+    firstName, lastName, phone, address, notes,
+    wilayaName: wilayaObj.n,
+    type: state.deliveryType,
+    days: ZONES[wilayaObj.z].days,
+    items: cart.map(item => {
+      const p = PRODUCTS.find(x => x.id === item.id);
+      return { name: p.name, qty: item.qty, price: p.price };
+    }),
+    subtotal: sub,
+    shipping: ship,
+    total: sub + ship
+  };
+
+  const btn = $('#submitOrder');
+  const original = btn.innerHTML;
+  btn.disabled = true;
+  btn.textContent = 'جارٍ تأكيد الطلب...';
+
+  setTimeout(() => {
+    renderSuccess(order);
+    cart = [];
+    saveCart();
+    renderCart();
+    btn.disabled = false;
+    btn.innerHTML = original;
+  }, 850);
+});
+
+/* =========================================================
+   القائمة الجوالة
+   ========================================================= */
+const mobileNav = $('#mobileNav');
+
+function openMenu() {
+  mobileNav.classList.add('open');
+  mobileNav.setAttribute('aria-hidden', 'false');
+  $('#menuBtn').setAttribute('aria-expanded', 'true');
+  syncLock();
+}
+function closeMenu() {
+  mobileNav.classList.remove('open');
+  mobileNav.setAttribute('aria-hidden', 'true');
+  $('#menuBtn').setAttribute('aria-expanded', 'false');
+  syncLock();
+}
+$('#menuBtn').addEventListener('click', openMenu);
+$('#closeMenu').addEventListener('click', closeMenu);
+$$('#mobileNav a').forEach(a => a.addEventListener('click', closeMenu));
+
+/* =========================================================
+   الفلاتر والبحث
+   ========================================================= */
+$('#filters').addEventListener('click', e => {
+  const btn = e.target.closest('.filter-btn');
+  if (!btn) return;
+  state.filter = btn.dataset.filter;
+  $$('.filter-btn').forEach(b => {
+    const on = b === btn;
+    b.classList.toggle('active', on);
+    b.setAttribute('aria-selected', String(on));
+  });
+  renderProducts();
+});
+
+$('#productSearch').addEventListener('input', e => {
+  state.query = e.target.value;
+  renderProducts();
+});
+
+/* =========================================================
+   نموذج التواصل
+   ========================================================= */
+$('#contactForm').addEventListener('submit', e => {
+  e.preventDefault();
+  const f = e.currentTarget;
+  const first = $('#cFirst').value.trim();
+  const last = $('#cLast').value.trim();
+  const phone = $('#cPhone').value.trim().replace(/[\s\-\.]/g, '');
+  const msg = $('#cMsg').value.trim();
+  $$('.field', f).forEach(field => field.classList.remove('invalid'));
+  let ok = true;
+  if (first.length < 2) { setInvalid($('#cFirst'), ''); ok = false; }
+  if (last.length < 2) { setInvalid($('#cLast'), ''); ok = false; }
+  if (!/^0[5-7]\d{8}$/.test(phone)) { setInvalid($('#cPhone'), ''); ok = false; }
+  if (msg.length < 5) { setInvalid($('#cMsg'), ''); ok = false; }
+  if (!ok) { toast('يرجى إكمال الحقول المطلوبة بشكل صحيح'); return; }
+  toast('تم إرسال رسالتك — سنتواصل معك قريباً');
+  f.reset();
+});
+
+/* =========================================================
+   إشعارات
+   ========================================================= */
+function toast(message) {
+  const box = $('#toastWrap');
+  const el = document.createElement('div');
+  el.className = 'toast';
+  const icon = document.createElement('svg');
+  icon.setAttribute('class', 'ic');
+  icon.innerHTML = '<use href="#i-check"></use>';
+  const span = document.createElement('span');
+  span.textContent = message;
+  el.appendChild(icon);
+  el.appendChild(span);
+  box.appendChild(el);
+  setTimeout(() => {
+    el.classList.add('out');
+    setTimeout(() => el.remove(), 320);
+  }, 2700);
+}
+
+/* =========================================================
+   واجهة الصفحة: هيدر، عدّادات، ظهور العناصر
+   ========================================================= */
+const header = $('#siteHeader');
+const toTop = $('#toTop');
+const navLinks = $$('.nav a');
+const sectionIds = ['home', 'products', 'builder', 'why', 'reviews', 'delivery', 'faq', 'contact'];
+
+function onScroll() {
+  const y = window.scrollY;
+  header.classList.toggle('scrolled', y > 16);
+  toTop.classList.toggle('show', y > 650);
+
+  let current = 'home';
+  sectionIds.forEach(id => {
+    const el = document.getElementById(id);
+    if (el && el.getBoundingClientRect().top <= 150) current = id;
+  });
+  navLinks.forEach(a => a.classList.toggle('active', a.getAttribute('href') === '#' + current));
+}
+
+window.addEventListener('scroll', onScroll, { passive: true });
+toTop.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+
+/* عدّادات الأرقام */
+function animateCounter(el) {
+  if (el.dataset.done) return;
+  el.dataset.done = '1';
+  const target = parseFloat(el.dataset.counter);
+  const decimals = parseInt(el.dataset.decimals || '0', 10);
+  const suffix = el.dataset.suffix || '';
+  const duration = 1400;
+  const start = performance.now();
+  function tick(now) {
+    const t = Math.min(1, (now - start) / duration);
+    const eased = 1 - Math.pow(1 - t, 3);
+    const val = target * eased;
+    el.textContent = (decimals ? val.toFixed(decimals) : Math.round(val).toLocaleString('en-US')) + suffix;
+    if (t < 1) requestAnimationFrame(tick);
+  }
+  requestAnimationFrame(tick);
+}
+
+const counterObserver = new IntersectionObserver(entries => {
+  entries.forEach(en => {
+    if (en.isIntersecting) {
+      animateCounter(en.target);
+      counterObserver.unobserve(en.target);
+    }
+  });
+}, { threshold: 0.4 });
+$$('[data-counter]').forEach(el => counterObserver.observe(el));
+
+/* ظهور تدريجي */
+const revealObserver = new IntersectionObserver(entries => {
+  entries.forEach(en => {
+    if (en.isIntersecting) {
+      en.target.classList.add('in');
+      revealObserver.unobserve(en.target);
+    }
+  });
+}, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+$$('.reveal').forEach(el => revealObserver.observe(el));
+
+/* إمالة بسيطة لصورة الهيرو */
+const heroVisual = $('#heroVisual');
+const heroCard = $('#heroCard');
+const finePointer = window.matchMedia('(pointer:fine)').matches;
+const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+if (finePointer && !reducedMotion && heroVisual && heroCard) {
+  heroVisual.addEventListener('pointermove', e => {
+    const r = heroVisual.getBoundingClientRect();
+    const x = (e.clientX - r.left) / r.width - 0.5;
+    const y = (e.clientY - r.top) / r.height - 0.5;
+    heroCard.style.transform = 'rotateY(' + (x * 8).toFixed(2) + 'deg) rotateX(' + (-y * 8).toFixed(2) + 'deg)';
+  });
+  heroVisual.addEventListener('pointerleave', () => { heroCard.style.transform = ''; });
+}
+
+/* إغلاق بمفتاح Escape */
+document.addEventListener('keydown', e => {
+  if (e.key !== 'Escape') return;
+  if ($('#checkoutModal').classList.contains('open')) closeCheckout();
+  else if (cartDrawer.classList.contains('open')) closeCart();
+  else if (mobileNav.classList.contains('open')) closeMenu();
+});
+
+/* =========================================================
+   التشغيل
+   ========================================================= */
+renderProducts();
+renderCart();
+renderWilayas();
+onScroll();
+</script>
+<script>
+(function(){
+  document.querySelectorAll('.reveal').forEach(function(e){ e.classList.add('in'); });
+  if (!cart.length) { cart = [{id:'titan',qty:1},{id:'vision27',qty:1}]; saveCart(); renderCart(); }
+  var v = new URLSearchParams(location.search).get('view');
+  if (v === 'cart') { openCart(); }
+  if (v === 'checkout') { openCheckout(); }
+  if (v === 'success') {
+    var modal = document.getElementById('checkoutModal');
+    modal.classList.add('open');
+    modal.setAttribute('aria-hidden','false');
+    document.getElementById('checkoutView').hidden = true;
+    document.getElementById('successView').hidden = false;
+    renderSuccess({id:'PD-482913',firstName:'أحمد',lastName:'بن علي',phone:'0550123456',wilayaName:'الجزائر',type:'home',days:'24–48 ساعة',items:[{name:'PEDROO TITAN X',qty:1,price:329900},{name:'PEDROO VISION 27',qty:1,price:52900}],total:382800,notes:''});
+  }
+})();
+</script></body>
+</html>

@@ -1,0 +1,59 @@
+rules_version = '2';
+
+// ============================================================================
+// PEDROO — Cloud Firestore security rules
+//
+// Model:
+//   users/{uid}  → the only client-writable document. Owner-only.
+//                  { uid, email, displayName, photoURL?, phone?, wishlist[],
+//                    createdAt, updatedAt }
+//
+// No collection is readable by the public. Orders/payments are intentionally
+// not writable from the browser: create them through a trusted backend or a
+// Cloud Function that recomputes prices server-side.
+// ============================================================================
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    function signedIn() {
+      return request.auth != null;
+    }
+
+    function isSelf(uid) {
+      return signedIn() && request.auth.uid == uid;
+    }
+
+    function validProfile(uid) {
+      let d = request.resource.data;
+      return isSelf(uid)
+        && d.uid == uid
+        && d.email == request.auth.token.email
+        && d.displayName is string
+        && d.displayName.size() >= 1
+        && d.displayName.size() <= 80
+        && d.wishlist is list
+        && d.wishlist.size() <= 60
+        && (!('photoURL' in d) || (d.photoURL is string && d.photoURL.size() <= 600))
+        && (!('phone' in d) || (d.phone is string && d.phone.size() <= 30))
+        && d.keys().hasOnly([
+             'uid', 'email', 'displayName', 'photoURL', 'phone',
+             'wishlist', 'createdAt', 'updatedAt'
+           ]);
+    }
+
+    match /users/{uid} {
+      // The client fetches its own document by ID; collection listing is not
+      // needed and is therefore denied.
+      allow get: if isSelf(uid);
+      allow list: if false;
+      allow create, update: if validProfile(uid);
+      allow delete: if isSelf(uid);
+    }
+
+    // Everything else is closed by default. Add backend-owned collections
+    // (orders, inventory, appointments…) with explicit rules when needed.
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}

@@ -1,0 +1,31 @@
+rules_version = '2';
+
+// ============================================================================
+// PEDROO — Cloud Storage security rules
+//
+// The current storefront does not upload files. These rules are ready for a
+// future avatar upload (users/{uid}/avatar/...) and keep everything else
+// closed. Images are public-readable once uploaded; writes are owner-only,
+// limited to 2 MB and real image content types.
+// ============================================================================
+service firebase.storage {
+  match /b/{bucket}/o {
+
+    function signedIn() {
+      return request.auth != null;
+    }
+
+    match /users/{uid}/avatar/{fileName} {
+      allow read: if true;
+      allow write: if signedIn()
+        && request.auth.uid == uid
+        && request.resource.size < 2 * 1024 * 1024
+        && request.resource.contentType.matches('image/.*');
+      allow delete: if signedIn() && request.auth.uid == uid;
+    }
+
+    match /{allPaths=**} {
+      allow read, write: if false;
+    }
+  }
+}
